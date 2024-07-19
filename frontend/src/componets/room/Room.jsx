@@ -31,7 +31,7 @@ export const Room = () => {
     },
     {
       id: 2,
-      title: "Habitación Dreams",
+      title: "Habitación Simple",
       image: "/img/habitacionDream.png",
       buttonText: "Ver más",
       service: [

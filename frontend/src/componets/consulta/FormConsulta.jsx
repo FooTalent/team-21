@@ -34,6 +34,7 @@ import HabitacionField from "./HabitacionField";
 import { MinusIcon, PlusSquareIcon } from "@chakra-ui/icons";
 import axios from "axios";
 import { HabitacionContext } from "../../context/HabitacionContext";
+import ExitoModal from "../admin/ExitoModal";
 
 export const FormConsulta = () => {
 
@@ -84,8 +85,6 @@ export const FormConsulta = () => {
   };
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      
-
       const formattedData = {
         client: {
           is_company: values.tipoReserva === "empresa",
@@ -135,6 +134,7 @@ export const FormConsulta = () => {
       );
     
       // Aquí puedes manejar la respuesta exitosa, por ejemplo, mostrar un mensaje al usuario
+     
       setSubmissionStatus('success');
       onOpen(); // 
     } catch (error) {
@@ -455,7 +455,22 @@ export const FormConsulta = () => {
                 Pedir Presupuesto
               </Button>
             </VStack>
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <ExitoModal 
+            isOpen={isOpen} 
+            onClose={onClose}
+
+            msjOk={"Tu solicitud de presupuesto ha sido enviada con éxito."}
+            msjError={"Hubo un error al enviar tu solicitud. Por favor, intenta de nuevo."}
+            onClick={(e) => {
+                            onClose();
+                            if (submissionStatus === "success") {
+                            props.resetForm();
+                            }
+                       }}
+            submissionStatus={submissionStatus}           
+            />
+
+            {/* <Modal isOpen={isOpen} onClose={onClose}>
               <ModalOverlay />
               <ModalContent>
                 <ModalHeader>
@@ -477,7 +492,7 @@ export const FormConsulta = () => {
                   </Button>
                 </ModalFooter>
               </ModalContent>
-            </Modal>
+            </Modal> */}
           </Form>
         )}
       </Formik>
