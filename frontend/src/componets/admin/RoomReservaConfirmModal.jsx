@@ -115,6 +115,8 @@ export const RoomReservaConfirmModal = ({
           },
         }
       );
+
+      
       setUpdateRoom(true);
     
       setMsjOk("La reserva fue Confirmada");
