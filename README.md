@@ -270,9 +270,6 @@ Puedes probar una versión demo del Gestor de Inventario en línea [aquí](URL_D
       <h3>🗣 Diseñadores UX/UI</h3>
       <dl>
         <dd>
-        
-        </dd>
-        <dd>
           <table>
             <thead>
               <tr>
@@ -314,7 +311,7 @@ Puedes probar una versión demo del Gestor de Inventario en línea [aquí](URL_D
                 </td>
               </tr>
             </tbody>
-          </table>        
+          </table>
+        </dd>        
       </dl>
-    <dd>
-   
+    </dd>  
