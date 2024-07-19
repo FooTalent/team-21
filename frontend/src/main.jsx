@@ -22,6 +22,8 @@ import { AdminLayout } from "./componets/admin/Layout/AdminLayout.jsx";
 import { HabitacionProvider } from "./context/HabitacionProvider.jsx";
 import { MenuReservas } from "./componets/admin/MenuReservas.jsx";
 import { NuevaHabitacion } from "./componets/admin/NuevaHabitacion.jsx";
+import { ReservacionesContext } from "./componets/admin/ReservacionesContext.jsx";
+import { ReservasProvider } from "./context/ReservasProvider.jsx";
 
 
 const router = createBrowserRouter([
@@ -76,16 +78,20 @@ const router = createBrowserRouter([
         path: "reservaciones",
         element: <Reservaciones />,
       },
+      {
+        path: "reservacontext",
+        element: <ReservacionesContext />,
+      },
     ],
   },
   {
-    path:'reservaciones',
-   element:<Reservaciones/>,
-   },
-   
+    path: 'reservaciones',
+    element: <Reservaciones />,
+  },
+
   {
-    path:'/admin/home',
-    element:<Bienvenida/>,
+    path: '/admin/home',
+    element: <Bienvenida />,
   },
 ])
 
@@ -104,9 +110,12 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     />
     <React.StrictMode>
       <UsuarioProvider>
-        <HabitacionProvider>
-          <RouterProvider router={router} />
-        </HabitacionProvider>
+        <ReservasProvider>
+
+          <HabitacionProvider>
+            <RouterProvider router={router} />
+          </HabitacionProvider>
+        </ReservasProvider>
       </UsuarioProvider>
     </React.StrictMode>
   </ChakraProvider>

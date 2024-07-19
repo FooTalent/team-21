@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -19,6 +19,7 @@ import {
 import { StatusText } from "./StatusText";
 import axios from "axios";
 import { formatDate } from "../../assets/formatDate";
+import { ReservasContext } from "../../context/ReservasContext";
 
 export const RoomReservaConfirmModal = ({
   id,
@@ -36,6 +37,7 @@ export const RoomReservaConfirmModal = ({
   const [room, setRoom] = useState([]);
   const [selectedRoomId, setSelectedRoomId] = useState(""); // Nuevo estado para el ID de la habitación seleccionada
   const fecha = formatDate(Date.now());
+  const {setUpdateRoom} = useContext(ReservasContext)
   //consultar las cotizaciones de es
   useEffect(() => {
     // Cargar las habitaciones cuando el modal se abra
@@ -96,6 +98,7 @@ export const RoomReservaConfirmModal = ({
         },
         }
       );
+      setUpdateRoom(true);
       alert("La reserva fue Confirmada");
       onClose();
       

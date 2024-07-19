@@ -1,8 +1,9 @@
 import { Box, Image, Text, Grid, GridItem, Input } from '@chakra-ui/react';
 import { StatusText } from "./StatusText.jsx";
 import { formatDate } from '../../assets/formatDate.js';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { ReservasContext } from '../../context/ReservasContext.jsx';
 
 export const RoomCardReserva = ({
   status,
@@ -21,6 +22,14 @@ export const RoomCardReserva = ({
   const [roomType, setRoomType] = useState('');
   const [client, setClient] = useState(null);
   const [dataModal, setDataModal] = useState({});
+  const {updateRoom, obtenerReservas,setUpdateRoom} = useContext(ReservasContext)
+
+  useEffect(() => {
+    if (updateRoom) {
+      obtenerReservas();
+      setUpdateRoom(false);
+    }
+  }, [updateRoom, obtenerReservas, setUpdateRoom]);
 
   const getClient = async () => {
     try {

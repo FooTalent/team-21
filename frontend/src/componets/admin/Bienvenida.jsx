@@ -66,7 +66,8 @@ export const Bienvenida = () => {
         >
           {[
             { icon: FaBed, text: "Habitaciones", url: "habitacion" },
-            { icon: FaCalendarAlt, text: "Reservas", url: "reservaciones" },
+            // { icon: FaCalendarAlt, text: "Reservas", url: "reservaciones" }, //tipo viejo
+            { icon: FaCalendarAlt, text: "Reservas", url: "reservacontext" },
             { icon: FaConciergeBell, text: "Servicios", url: "servicios" },
             { icon: FaUser, text: "Perfil", url: "perfil" },
           ].map((item, index) => (

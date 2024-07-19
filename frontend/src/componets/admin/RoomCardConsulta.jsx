@@ -24,6 +24,7 @@ import { useContext, useEffect, useState } from "react";
 import { RoomCardConfirmModal } from "./RoomCardConfirmModal.jsx";
 import { HabitacionContext } from "../../context/HabitacionContext.jsx";
 import axios from "axios";
+import { ReservasContext } from "../../context/ReservasContext.jsx";
 
 export const RoomCardConsulta = ({
   // id,
@@ -41,7 +42,8 @@ export const RoomCardConsulta = ({
   const [roomTipo, setRoomTypes] = useState({});
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isDeleting, setIsDeleting] = useState(false);
-  const { setUpdateRoom, updateRoom} = useContext(HabitacionContext);
+  const { setUpdateRoom, updateRoom} = useContext(HabitacionContext); //tomado de Habitaciones
+  // const { setUpdateRoom, updateRoom} = useContext(ReservasContext);
 
   const getRoomType= async(id)=>{
     try{
