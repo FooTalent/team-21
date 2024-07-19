@@ -16,6 +16,7 @@ export const Reservaciones = () => {
   const { reservas, consultas } = useContext(HabitacionContext);
   const [filtro, setFiltro] = useState("all");
   const isMobile= useBreakpointValue({base:true,sm:false,md:false,xl:false})
+
   return (
     <>
       <Header imgUrl={"/img/logo2linea.svg"} />

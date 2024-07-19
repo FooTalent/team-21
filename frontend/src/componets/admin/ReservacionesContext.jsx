@@ -1,6 +1,12 @@
 // src/components/admin/Reservaciones.jsx
 import React, { useContext, useEffect, useState } from "react";
-import { Box, Flex, Heading, Image, useBreakpointValue } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  Image,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 
 import { FooterAdmin } from "../footer/FooterAdmin";
@@ -14,14 +20,19 @@ import { Footer } from "../footer/Footer";
 import { ReservasContext } from "../../context/ReservasContext";
 
 export const ReservacionesContext = () => {
-  const {reservas, obtenerReservas,updateRoom} = useContext(ReservasContext);
+  const { reservas, obtenerReservas, updateRoom } = useContext(ReservasContext);
   const { consultas } = useContext(HabitacionContext);
   const [filtro, setFiltro] = useState("all");
-  const isMobile= useBreakpointValue({base:true,sm:false,md:false,xl:false})
-  
-  useEffect(()=>{
+  const isMobile = useBreakpointValue({
+    base: true,
+    sm: false,
+    md: false,
+    xl: false,
+  });
+
+  useEffect(() => {
     obtenerReservas();
-  },[updateRoom])
+  }, [updateRoom]);
   return (
     <>
       <Header imgUrl={"/img/logo2linea.svg"} />
@@ -77,16 +88,24 @@ export const ReservacionesContext = () => {
         <MenuReservas setFiltro={setFiltro} filtro={filtro} />
 
         {filtro == "all"
-          ? consultas.map((consulta) => (
-              <RoomCardConsulta key={consulta.id} consulta={consulta} />
-            ))
+          ? consultas
+              .filter((consulta) => consulta.status === "A")
+              .map((consulta) => (
+                <RoomCardConsulta key={consulta.id} consulta={consulta} />
+              ))
           : reservas
               .filter((reserva) => reserva.status === filtro)
               .map((reserva) => (
                 <RoomCardReserva key={reserva.id} {...reserva} />
               ))}
-        {isMobile ? <FooterAdmin /> : <Box w='100vw'> <Footer /></Box>}
-
+        {isMobile ? (
+          <FooterAdmin />
+        ) : (
+          <Box w="100vw">
+            {" "}
+            <Footer />
+          </Box>
+        )}
       </Box>
     </>
   );
