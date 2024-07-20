@@ -35,8 +35,8 @@ export const Footer = () => {
       >
         <Center flexDir={["column", "row"]} justifyContent={"space-around"}>
           <Link to={"/nosotros"}>Sobre nosotros</Link>
-          <Link to={"/room"}>Habitaciones</Link>
-          <Link>Nuestros servicios</Link>
+          {/* <Link to={"/room"}>Habitaciones</Link> */}
+          {/* <Link>Nuestros servicios</Link> */}
           <Link to={"/interes"}>Sitios de Interes</Link>
           <Link to={"/consulta"}>Formulario de reservas</Link>
         </Center>

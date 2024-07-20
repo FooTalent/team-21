@@ -24,13 +24,14 @@ import { MenuReservas } from "./componets/admin/MenuReservas.jsx";
 import { NuevaHabitacion } from "./componets/admin/NuevaHabitacion.jsx";
 import { ReservacionesContext } from "./componets/admin/ReservacionesContext.jsx";
 import { ReservasProvider } from "./context/ReservasProvider.jsx";
+import Error from "./componets/header/Error.jsx";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <h1>Error</h1>,
+    errorElement: <Error/>,
   },
   {
     path: "/consulta",

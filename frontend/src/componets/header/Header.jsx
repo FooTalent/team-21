@@ -88,13 +88,13 @@ export const Header = () => {
                 >
                   <Link to={"/nosotros"}>Sobre Nosotros</Link>
                 </Box>
-                <Box
+                {/* <Box
                   borderLeft={"2px solid"}
                   borderColor={" secondary.200"}
                   pl={25}
                 >
                   <Link to={"/room"}>Habitaciones</Link>
-                </Box>
+                </Box> */}
 
                 <Box
                   borderLeft={"2px solid"}

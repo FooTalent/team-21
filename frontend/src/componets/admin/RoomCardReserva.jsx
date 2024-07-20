@@ -147,7 +147,7 @@ export const RoomCardReserva = ({
         <GridItem>
           <Text fontSize="12px" fontWeight="bold" color="text.gris" align="center">Status</Text>
           {status === "A" && <StatusText status="confirmado" cliente={client} dataModal={dataModal}>Confirmado</StatusText>}
-          {status === "C" && <StatusText status="cancelado" cliente={client} dataModal={dataModal}>Cancelado</StatusText>}
+          {status === "D" && <StatusText status="cancelado" cliente={client} dataModal={dataModal}>Cancelado</StatusText>}
           {status === "R" && <StatusText status="porConfirmar" dataModal={dataModal} cliente={client}>Por Confirmar</StatusText>}
         </GridItem>
       </Grid>
