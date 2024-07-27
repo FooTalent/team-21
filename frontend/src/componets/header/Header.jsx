@@ -37,16 +37,18 @@ export const Header = () => {
           bg="brand.light" 
           color={"secondary.500"}
         >
-          <Flex align="center" ml={15} h="100px">
+          <Flex align="center" ml={'5%'} h="100px">
             <Link to="/">
               <Img src={imgUrl} alt="logo" width={"250px"} />
             </Link>
           </Flex>
 
-          <HStack spacing={8} display={{ base: "none", sm: "flex" }}>
+          <HStack spacing={8} display={{ base: "none", sm: "flex" }}mr={'5%'} >
             <Link to={"/nosotros"}>Sobre Nosotros</Link>
             <Link to={"/interes"}>Sitios de Interes</Link>
-            <Link to={"/consulta"}>Reservar</Link>
+            <Button variant='filled' >
+            <Link to={"/consulta"}>Consulta</Link>
+            </Button>
             {/* <Box>
               <IconButton
                 ml={4}

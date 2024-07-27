@@ -5,7 +5,9 @@ export const ButtonConfig = defineStyleConfig({
   
   variants: {
     filled: {
-      fontWeight: 'bold',
+      fontWeight: 400,
+      width:'7em',
+      fontFamily: "Poppins",
       borderRadius: '25px',
       transition: 'all 0.2s',
       bg: 'primary.default',

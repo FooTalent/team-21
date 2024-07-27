@@ -5,7 +5,7 @@ export const RoomCard = ({ id, image, name, service, onOpen }) => {
   return (
     <WrapItem w="30%">
       <Box>
-        <Image src={image} alt={name} objectFit="cover" h="285px" />
+        <Image src={image} alt={name} objectFit="cover" minH={'19em'} borderRadius={'16px'} />
         <Text color="black" fontSize="xl" fontWeight="bold">
           {name}
         </Text>

@@ -22,7 +22,7 @@ export const Carousel = ({ slides }) => {
   }, [nextSlide]);
 
   return (
-    <Box position="relative" height="320px" overflow="hidden">
+    <Box position="relative" height="80vh" overflow="hidden">
       <motion.div
         key={currentSlide}
         initial={{ opacity: 0 }}
@@ -35,13 +35,13 @@ export const Carousel = ({ slides }) => {
           alt={`Slide ${currentSlide + 1}`}
           objectFit="cover"
           w="100%"
-          h="350px"
+          h="80vh"
         />
         <Box
           display="flex"
           flexDir={"column"}
           position="absolute"
-          top="20%"
+          top="40%"
           left="5%"
           //  transform="translate(5%, 5%)"
 
@@ -50,7 +50,7 @@ export const Carousel = ({ slides }) => {
           <Text fontSize="3xl" fontWeight="bold" mb={4}>
             {slides[currentSlide].title}
           </Text>
-          <Button variant={"filled"} padding={"0 40px"} width={"40%"}>
+          <Button variant={"filled"} >
             <Link to="/consulta">{slides[currentSlide].buttonText}</Link>
           </Button>
         </Box>

@@ -144,7 +144,7 @@ export const Room = () => {
                 bg={currentSlide === index ? "white" : "whiteAlpha.400"}
                 w="30px"
                 h="4px"
-                // borderRadius="50%"
+                // borderRadius="16px"
                 mx="2px"
                 onClick={() => setCurrentSlide(index)}
               />

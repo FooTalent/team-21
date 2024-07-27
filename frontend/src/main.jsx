@@ -98,17 +98,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ChakraProvider theme={themeCustom}>
-    <Global
-      styles={css`
-      @font-face{
-      font-family:'MiFuente';
-      src:url('/fonts/poppins/Poppins-Regular.ttf);
-      font-weight:normal;
-      font-style:normal;
-      
-      }
-      `}
-    />
+    
     <React.StrictMode>
       <UsuarioProvider>
         <ReservasProvider>

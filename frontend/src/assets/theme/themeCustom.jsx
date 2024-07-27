@@ -43,6 +43,7 @@ export const themeCustom = extendTheme({
         500: "#0B265B",
         600: "#091E49",
         800: "#040F24",
+        900:"#020812",
         default: "#E8C888",
         dark: "#DACFF6",
         white: "#FFFFFF",
@@ -63,8 +64,11 @@ export const themeCustom = extendTheme({
         200: "#E2E2E2",
         300: "#FFDE9D73",
         400:"#707070",
-        500:"#909090"
+        500:"#909090",
 
+      },
+      neutral:{
+        950:"#010409",
       },
       negative: {
         500: "#F2415A",
