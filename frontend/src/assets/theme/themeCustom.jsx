@@ -27,6 +27,14 @@ export const themeCustom = extendTheme({
         color: "text.default",
         fontFamily: "Poppins,sans-serif",
       },
+      "h4":{
+        fontSize: "1.3em",
+        lineHeight:'150%',
+        letterSpacing:'0.15px',
+        fontStyle:'normal',
+        fontWeight:500,
+        fontFamily: "Poppins,sans-serif",
+      }
     }),
   },
   components: {
@@ -68,6 +76,8 @@ export const themeCustom = extendTheme({
 
       },
       neutral:{
+        800:"#34363A",
+        900:"#1A1D22",
         950:"#010409",
       },
       negative: {

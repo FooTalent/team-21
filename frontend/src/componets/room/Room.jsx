@@ -107,15 +107,28 @@ export const Room = () => {
       color="black"
       bg={"white"}
     >
-      <Box>
-        <Text as="h2" fontSize="2xl" fontWeight="bold" textAlign={"left"}>
+      <Flex>
+        <Text 
+        as="h2"
+        w={'50%'}
+        pr={'15%'} 
+        fontSize={["1em","1.2em","1.5em","2.5em"]} 
+        fontWeight="bold" 
+        textAlign={"left"}>
           Conocé las habitaciones
         </Text>
-        <Text as="h4" textAlign={"left"}>
+        <Text 
+        as="p" 
+       
+       
+        fontSize={'1em'} 
+        textAlign={"left"} 
+        letterSpacing={'0.15px'}
+        >
           Nuestras habitaciones combinan elegancia y confort con modernas
           comodidades, conocelas.
         </Text>
-      </Box>
+      </Flex>
       {isMobile ? (
         <Box position="relative" h={"450px"} overflow="hidden">
           <motion.div
