@@ -18,37 +18,53 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { SunIcon, MoonIcon, HamburgerIcon } from "@chakra-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { LinkHover } from "./LinkHover";
 
 export const Header = () => {
- 
+  const location = useLocation();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const imgUrl = useBreakpointValue({base:"/img/logo2linea.svg", md: "/img/logo1linea.svg"})
+  const imgUrl = useBreakpointValue({
+    base: "/img/logo2linea.svg",
+    md: "/img/logo1linea.svg",
+  });
 
   return (
     <Box>
       <Box>
         <Flex
+          h={"5.5em"}
           as="nav"
-          align="center"
-          justify="space-between"
+          justifyContent="space-between"
+          alignItems={"center"}
           wrap="wrap"
-          paddingRight="1.5rem"
-          bg="brand.light" 
-          color={"secondary.500"}
+          px="4.5em"
+          pb="1em"
+          bg="brand.light"
+          color={"white"}
         >
-          <Flex align="center" ml={'5%'} h="100px">
+          <Flex align="center" h="100px">
             <Link to="/">
               <Img src={imgUrl} alt="logo" width={"250px"} />
             </Link>
           </Flex>
 
-          <HStack spacing={8} display={{ base: "none", sm: "flex" }}mr={'5%'} >
-            <Link to={"/nosotros"}>Sobre Nosotros</Link>
-            <Link to={"/interes"}>Sitios de Interes</Link>
-            <Button variant='filled' >
-            <Link to={"/consulta"}>Consulta</Link>
-            </Button>
+          <Flex
+           spacing={8} 
+           width={'35em'}
+           justifyContent={'center'}
+           gap={'1em'}
+           flexShrink={0}
+           display={{ base: "none", sm: "flex" }}
+           mr={"5%"}>
+            <LinkHover to="/nosotros" currentPath={location.pathname}>
+              Sobre Nosotros
+            </LinkHover>
+            <LinkHover to="/interes" currentPath={location.pathname}>
+              Sitios de Interes
+            </LinkHover>
+
+         
             {/* <Box>
               <IconButton
                 ml={4}
@@ -59,7 +75,10 @@ export const Header = () => {
                 onClick={toggleColorMode}
               />
             </Box> */}
-          </HStack>
+          </Flex>
+          <Button variant="filled">
+              <Link to={"/consulta"}>Consultar</Link>
+            </Button>
 
           <IconButton
             size="md"
@@ -68,16 +87,13 @@ export const Header = () => {
             display={{ sm: "none" }}
             onClick={onOpen}
             color="secondary.500"
-            bg="brand.default" 
+            bg="brand.default"
           />
         </Flex>
 
         <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
           <DrawerOverlay />
-          <DrawerContent
-            bg="brand.light"
-            color= "secondary.500" 
-          >
+          <DrawerContent bg="brand.light" color="secondary.500">
             <DrawerCloseButton />
             <DrawerHeader>Menu</DrawerHeader>
 
@@ -107,9 +123,8 @@ export const Header = () => {
                 </Box>
 
                 <Button>
-                  <Link to={"/consulta"}>Reservar</Link>
+                  <Link to={"/consulta"}>Consulta</Link>
                 </Button>
-               
               </VStack>
             </DrawerBody>
           </DrawerContent>

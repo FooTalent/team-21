@@ -47,10 +47,11 @@ export const Service = () => {
       <Text as='h2'
       fontSize={'2.8em'}
       color={'neutral.950'}>Nuestros servicios</Text>
-      <SimpleGrid columns={3} width="100%" >
+      <SimpleGrid columns={3} width="100%">
         <Feature
-          icon={<Image src={'/icons/computer.png'} w='3.4em'/>} 
+          icon={<Image src={'/icons/computer.png'} w='3.4em' h='3.4em'/>} 
           text="Espacio de Trabajo"
+         
         />
         <Feature
           icon={<Image src={'/icons/bakery_dining.png'} w='3.4em'/>} 
@@ -87,7 +88,7 @@ export const Service = () => {
 
       <Center width="100%">
         <Button mb={2} variant={"filled"} marginBottom={4}>
-          <Link to={"/consulta"}>Consulta</Link>
+          <Link to={"/consulta"}>Consultar</Link>
         </Button>
       </Center>
     </VStack>

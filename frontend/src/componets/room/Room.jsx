@@ -103,7 +103,8 @@ export const Room = () => {
     <Stack
       width={["395px", "525px", "100%"]}
       maxWidth={["430px", "100%"]}
-      p={10}
+      py={[10,'4.5em']}
+      px={[10,'7.5em']}
       color="black"
       bg={"white"}
     >
@@ -171,7 +172,7 @@ export const Room = () => {
             textAlign="left"
             size="24px"
           >
-            <Text fontSize="3xl" fontWeight="bold" mb={4}>
+            <Text fontSize="2.8em" m={'1em'}>
               {slides[currentSlide].title}
             </Text>
             <Button

@@ -5,7 +5,8 @@ export const About = () => {
     <Center
       bg={"secondary.200"}
       flexWrap={"wrap"}
-      p={[2, 4]}
+      py={[2,'4.5em']}
+      px={[2, '7.5em']}
       paddingTop={3}
       paddingBottom={5}
     >
@@ -16,25 +17,27 @@ export const About = () => {
         p={"10px"}
       >
         <Box
-          w={["100%", "100%", "45%"]}
+          w={["100%", "100%", "50%"]}
           flexDirection={["column", "column", "row"]}
           fontFamily={"Poppins"}
+          
         >
           <Text
             as="h1"
+            w={'70%'}
+            
+            fontStyle={'normal'}
             fontSize={["1.2em", "1.5em", "2.9em"]}
             fontWeight={400}
-            textAlign={"center"}
+            textAlign={"left"}
+            lineHeight={'116%'}
           >
             Bienvenidos a Oceano Hotel
           </Text>
           <Text
             as="h3"
-          
-            marginRight={3}
-            marginLeft={3}
-            marginBottom={3}
-            fontSize={["1em", "1.2em", "1.3em"]}
+           fontSize={["0.9em", "1em", "1.1em"]}
+           pr={10}
           >
             Ofrecemos una experiencia de lujo y comodidad en un entorno urbano
             vibrante. Con modernas instalaciones, un servicio excepcional y una

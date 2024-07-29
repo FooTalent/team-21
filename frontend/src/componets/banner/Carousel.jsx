@@ -47,7 +47,15 @@ export const Carousel = ({ slides }) => {
 
           color="white"
         >
-          <Text fontSize="3xl" fontWeight="bold" mb={4}>
+          <Text
+          w={'65%'}
+          fontSize="3.5em"
+          textShadow={'2px 2px 2px #909090'}
+          fontWeight="700" 
+           mb={4}
+           lineHeight={'150%'}
+           letterSpacing={'0.25px'}
+           >
             {slides[currentSlide].title}
           </Text>
           <Button variant={"filled"} >

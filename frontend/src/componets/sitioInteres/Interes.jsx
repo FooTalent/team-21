@@ -132,7 +132,7 @@ export const Interes = () => {
       </Center>
       <Center>
         <Button mb={2} variant={"filled"} marginBottom={4}>
-          <Link to={"/consulta"}>Consulta</Link>
+          <Link to={"/consulta"}>Consultar</Link>
         </Button>
       </Center>
       <Footer />

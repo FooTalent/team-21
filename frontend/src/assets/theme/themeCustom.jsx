@@ -23,6 +23,8 @@ export const themeCustom = extendTheme({
       },
 
       "html, body": {
+        m:0,
+        p:0,
         bg: "brand.dark",
         color: "text.default",
         fontFamily: "Poppins,sans-serif",
@@ -59,11 +61,12 @@ export const themeCustom = extendTheme({
       secondary: {
         200: "#FFF1D6",
         500: "#FFDE9D",
+        400: "#FFE5B3",
         600: "#FFC34D",
         default: "#8C65AD",
         dark: "#8C65FF",
       },
-
+    
       fondo_admin: {
         100: '#CEC9C9',
       },

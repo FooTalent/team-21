@@ -6,7 +6,14 @@ function Nosotros() {
   return (
     <>
       <Header />
-      <Box as="section" p={4} m={"24px 20px 20px 40px"} fontFamily={"Poppins"}>
+      <Box 
+      as="section" 
+      px={4} 
+      my={'5%'}
+      mx={['2%','10%']} 
+      fontFamily={"Poppins"}
+     
+      >
         <VStack
           spacing={4}
           align="stretch"
@@ -36,7 +43,11 @@ function Nosotros() {
               height="100%"
             />
           </Box>
-          <Text color={"primary.500"} fontSize="2em" fontWeight="400">
+          <Text
+        
+          color={"primary.500"} 
+          fontSize="2em" 
+          fontWeight="400">
             En Oceano Hotel, nos enorgullecemos de ofrecer una experiencia de
             lujo y confort en el corazón de la ciudad.
           </Text>
@@ -47,7 +58,7 @@ function Nosotros() {
             viajes por negocios o placer, nuestro objetivo es hacer de tu
             estancia una experiencia memorable y placentera.
           </Text>
-          <Flex direction={"column"}>
+          <Flex direction={"column"} w='95%'>
             <Heading
               as="h2"
               fontWeight="400"
@@ -72,7 +83,7 @@ function Nosotros() {
                 fontSize="1.5em"
                 borderLeft={"9px solid"}
                 borderLeftColor={"secondary.500"}
-                px={16}
+                px={'1%'}
                 mb={'1.5em'}
               >
                 Excelencia en el Servicio: Nos esforzamos por proporcionar un
@@ -85,7 +96,7 @@ function Nosotros() {
                 fontSize="1.5em"
                 borderLeft={"9px solid"}
                 borderLeftColor={"secondary.500"}
-                px={16}
+                px={'1%'}
                 my={'1.5em'}
               >
                 Calidad y Confort: Nos dedicamos a mantener los más altos
@@ -97,7 +108,7 @@ function Nosotros() {
               <Text fontSize="1.5em"
                 borderLeft={"9px solid"}
                 borderLeftColor={"secondary.500"}
-                px={16}
+                px={'1%'}
                 my={'1.5em'}
                 >
                 Integridad y Transparencia: Operamos con los más altos niveles

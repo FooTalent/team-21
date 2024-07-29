@@ -7,17 +7,17 @@ export const Banner = () => {
     {
       image: '/img/banner1.png',
       title: 'Descubre el oasis que buscabas',
-      buttonText: 'Consulta'
+      buttonText: 'Consultar'
     },
     {
       image: '/img/banner2.png',
       title: 'Vive experiencias inolvidables',
-      buttonText: 'Consulta'
+      buttonText: 'Consultar'
     },
     {
       image: '/img/banner3.png',
       title: 'Disfruta de tu tiempo',
-      buttonText: 'Consulta'
+      buttonText: 'Consultar'
     }, 
   ];
 

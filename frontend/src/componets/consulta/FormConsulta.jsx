@@ -155,6 +155,7 @@ export const FormConsulta = () => {
   };
   return (
     <Center bg="secondary.200" paddingTop={"10px"}>
+    
       <Formik
         initialValues={{
           nombre: "",
@@ -181,13 +182,18 @@ export const FormConsulta = () => {
       >
         {(props) => (
           <Form variants="nuevo">
+              <Text 
+              fontSize={'1.3em'}
+              my={'1%'}
+              >Formulario de Consultas</Text>
             <VStack spacing={4} align="stretch">
               <Field name="nombre">
                 {({ field, form }) => (
                   <FormControl
                     isInvalid={form.errors.nombre && form.touched.nombre}
+                    isRequired
                   >
-                    <FormLabel htmlFor="nombre">Nombre <Text display={'inline-block'}color={'red'}>*</Text></FormLabel>
+                    <FormLabel htmlFor="nombre">Nombre</FormLabel>
                     <Input
                       {...field}
                       id="nombre"
@@ -202,8 +208,9 @@ export const FormConsulta = () => {
                 {({ field, form }) => (
                   <FormControl
                     isInvalid={form.errors.apellido && form.touched.apellido}
+                    isRequired
                   >
-                    <FormLabel htmlFor="apellido">Apellido <Text display={'inline-block'}color={'red'}>*</Text></FormLabel>
+                    <FormLabel htmlFor="apellido">Apellido</FormLabel>
                     <Input
                       {...field}
                       id="apellido"
@@ -218,8 +225,9 @@ export const FormConsulta = () => {
                 {({ field, form }) => (
                   <FormControl
                     isInvalid={form.errors.email && form.touched.email}
+                    isRequired
                   >
-                    <FormLabel htmlFor="email">Email <Text display={'inline-block'}color={'red'}>*</Text></FormLabel>
+                    <FormLabel htmlFor="email">Email</FormLabel>
                     <Input
                       {...field}
                       id="email"
@@ -235,8 +243,9 @@ export const FormConsulta = () => {
                 {({ field, form }) => (
                   <FormControl
                     isInvalid={form.errors.telefono && form.touched.telefono}
+                    isRequired
                   >
-                    <FormLabel htmlFor="telefono">Teléfono <Text display={'inline-block'}color={'red'}>*</Text></FormLabel>
+                    <FormLabel htmlFor="telefono">Teléfono </FormLabel>
                     <Input
                       {...field}
                       id="telefono"
@@ -253,8 +262,9 @@ export const FormConsulta = () => {
                     isInvalid={
                       form.errors.tipoReserva && form.touched.tipoReserva
                     }
+                    isRequired
                   >
-                    <FormLabel htmlFor="tipoReserva">Tipo de Reserva <Text display={'inline-block'}color={'red'}>*</Text></FormLabel>
+                    <FormLabel htmlFor="tipoReserva">Tipo de Reserva </FormLabel>
                     <RadioGroup
                       {...field}
                       id="tipoReserva"
@@ -285,8 +295,8 @@ export const FormConsulta = () => {
               {props.values.tipoReserva === "empresa" && (
                 <Field name="razonSocial">
                   {({ field, form }) => (
-                    <FormControl>
-                      <FormLabel htmlFor="razonSocial">Razón Social <Text display={'inline-block'}color={'red'}>*</Text></FormLabel>
+                    <FormControl isRequired>
+                      <FormLabel htmlFor="razonSocial">Razón Social </FormLabel>
                       <Input
                         {...field}
                         id="razonSocial"
@@ -301,8 +311,9 @@ export const FormConsulta = () => {
                 {({ field, form }) => (
                   <FormControl
                     isInvalid={form.errors.fechaIng && form.touched.fechaIng}
+                    isRequired
                   >
-                    <FormLabel htmlFor="fechaIng">Fecha de Ingreso <Text display={'inline-block'}color={'red'}>*</Text></FormLabel>
+                    <FormLabel htmlFor="fechaIng">Fecha de Ingreso</FormLabel>
                     <Input
                       {...field}
                       id="fechaIng"
@@ -327,8 +338,9 @@ export const FormConsulta = () => {
                     isInvalid={
                       form.errors.fechaSalida && form.touched.fechaSalida
                     }
+                    isRequired
                   >
-                    <FormLabel htmlFor="fechaSalida">Fecha de Salida <Text display={'inline-block'}color={'red'}>*</Text></FormLabel>
+                    <FormLabel htmlFor="fechaSalida">Fecha de Salida</FormLabel>
                     <Input
                       {...field}
                       id="fechaSalida"
@@ -352,6 +364,7 @@ export const FormConsulta = () => {
                 {({ field, form }) => (
                   <FormControl
                     isInvalid={form.errors.nroNoche && form.touched.nroNoche}
+                    
                   >
                     <FormLabel htmlFor="nroNoche">Número de Noches</FormLabel>
                     <NumberInput min={1} value={field.value || ''}>
@@ -451,8 +464,11 @@ export const FormConsulta = () => {
                 variant={"filled"}
                 isLoading={props.isSubmitting}
                 type="submit"
+                w='200px'
+                
+                
               >
-                Pedir Presupuesto
+                ENVIAR CONSULTA
               </Button>
             </VStack>
             <ExitoModal 

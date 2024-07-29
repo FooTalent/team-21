@@ -18,7 +18,7 @@ export const InputCustom = {
       field: {
         bg: "white",
         border: "1px solid",
-        borderColor: "varios.200",
+        borderColor: "primary.600",
         fontSize: "14px",
         width: "365px",
         height: "40px",

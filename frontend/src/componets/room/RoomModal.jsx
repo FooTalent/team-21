@@ -99,7 +99,7 @@ export const RoomModal = ({ name, img, service, isOpen, onClose }) => {
                 )}
                 <Flex w={"100%"} justifyContent={"flex-end"}>
                   <Button m={2}>
-                    <Link to={`/consulta`}>Reserva</Link>
+                    <Link to={`/consulta`}>Consulta</Link>
                   </Button>
                 </Flex>
               </Flex>
