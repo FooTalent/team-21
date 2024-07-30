@@ -15,10 +15,10 @@ export const HabitacionProvider = ({ children }) => {
   const obtenerDatos = async () => {
     try {
       const respuesta = await axios.get(
-        "https://hotel-oceano.onrender.com/api-room/roomtype/",{withCredentials:true}
+        URL_BASE+"/api-room/roomtype/",{withCredentials:true}
       ); // Cambia la URL por tu endpoint
       const imagen = await axios.get(
-        "https://hotel-oceano.onrender.com/api-room/roomphoto/",{withCredentials:true}
+        URL_BASE+"/api-room/roomphoto/",{withCredentials:true}
       );
       setImgRooms(imagen.data);
       setRooms(respuesta.data);

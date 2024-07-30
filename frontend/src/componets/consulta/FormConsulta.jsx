@@ -155,6 +155,7 @@ export const FormConsulta = () => {
     return Math.ceil(diferencia / (1000 * 3600 * 24));
   };
   return (
+    
     <Center bg="secondary.200" paddingTop={"10px"}>
     
       <Formik
@@ -184,7 +185,8 @@ export const FormConsulta = () => {
         {(props) => (
           <Form variants="nuevo">
               <Text 
-              fontSize={'1.3em'}
+              fontSize={'1.5em'}
+              fontWeight={900}
               my={'1%'}
               >Formulario de Consultas</Text>
             <VStack spacing={4} align="stretch">
@@ -193,8 +195,9 @@ export const FormConsulta = () => {
               borderColor={'secondary.600'}
               p={5}
               borderRadius={15}
+              boxShadow={'5px 5px 5px black'}
               >
-                <Heading as='h2' fontSize={'1.2em'}>Información Personal</Heading>
+                <Heading as='h2' fontSize={'1.2em'} >Información Personal</Heading>
                             
               <Field name="nombre">
                 {({ field, form }) => (
@@ -272,6 +275,7 @@ export const FormConsulta = () => {
               borderColor={'secondary.600'}
               p={5}
               borderRadius={15}
+              boxShadow={'5px 5px 5px black'}
               >
                 <Heading as='h2' fontSize={'1.2em'}>Datos a Consultar</Heading>
               <Field name="tipoReserva">
@@ -398,6 +402,7 @@ export const FormConsulta = () => {
               borderColor={'secondary.600'}
               p={5}
               borderRadius={15}
+              boxShadow={'5px 5px 5px black'}
               >
                 <Heading as='h2' fontSize={'1.2em'}>Sobre Habitaciones y Servicios</Heading>
               <Field name="habitaciones">
