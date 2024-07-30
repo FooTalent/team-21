@@ -15,10 +15,10 @@ export const HabitacionProvider = ({ children }) => {
   const obtenerDatos = async () => {
     try {
       const respuesta = await axios.get(
-        "https://hotel-oceano.onrender.com/api-room/roomtype/"
+        "https://hotel-oceano.onrender.com/api-room/roomtype/",{withCredentials:true}
       ); // Cambia la URL por tu endpoint
       const imagen = await axios.get(
-        "https://hotel-oceano.onrender.com/api-room/roomphoto/"
+        "https://hotel-oceano.onrender.com/api-room/roomphoto/",{withCredentials:true}
       );
       setImgRooms(imagen.data);
       setRooms(respuesta.data);
@@ -36,7 +36,7 @@ export const HabitacionProvider = ({ children }) => {
     try {
       //realice un cambio para tomar el listado desde quotation
       //const response = await axios.get(URL_BASE+'/api-reservation/reservationroom/');
-      const response = await axios.get(URL_BASE + "/api-quotation/quotation/");
+      const response = await axios.get(URL_BASE + "/api-quotation/quotation/",{withCredentials:true});
       setConsultas(response.data);
     } catch (error) {
       setError(error.message);

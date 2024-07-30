@@ -19,7 +19,7 @@ export const themeCustom = extendTheme({
   styles: {
     global: (props) => ({
       fonts: {
-        heading: `'Poppins','MiFuente'`,
+        heading: `'Poppins'`,
       },
 
       "html, body": {
@@ -27,7 +27,7 @@ export const themeCustom = extendTheme({
         p:0,
         bg: "brand.dark",
         color: "text.default",
-        fontFamily: "Poppins,sans-serif",
+        fontFamily: "Poppins",
       },
       "h4":{
         fontSize: "1.3em",
@@ -35,7 +35,7 @@ export const themeCustom = extendTheme({
         letterSpacing:'0.15px',
         fontStyle:'normal',
         fontWeight:500,
-        fontFamily: "Poppins,sans-serif",
+        fontFamily: "Poppins",
       }
     }),
   },

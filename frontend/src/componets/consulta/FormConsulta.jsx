@@ -29,6 +29,7 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
+  Heading,
 } from "@chakra-ui/react";
 import HabitacionField from "./HabitacionField";
 import { MinusIcon, PlusSquareIcon } from "@chakra-ui/icons";
@@ -187,6 +188,14 @@ export const FormConsulta = () => {
               my={'1%'}
               >Formulario de Consultas</Text>
             <VStack spacing={4} align="stretch">
+              <Box 
+              border={'2px solid'}
+              borderColor={'secondary.600'}
+              p={5}
+              borderRadius={15}
+              >
+                <Heading as='h2' fontSize={'1.2em'}>Información Personal</Heading>
+                            
               <Field name="nombre">
                 {({ field, form }) => (
                   <FormControl
@@ -256,6 +265,15 @@ export const FormConsulta = () => {
                   </FormControl>
                 )}
               </Field>
+              </Box>
+
+              <Box 
+              border={'2px solid'}
+              borderColor={'secondary.600'}
+              p={5}
+              borderRadius={15}
+              >
+                <Heading as='h2' fontSize={'1.2em'}>Datos a Consultar</Heading>
               <Field name="tipoReserva">
                 {({ field, form }) => (
                   <FormControl
@@ -374,6 +392,14 @@ export const FormConsulta = () => {
                   </FormControl>
                 )}
               </Field>
+              </Box>
+              <Box 
+              border={'2px solid'}
+              borderColor={'secondary.600'}
+              p={5}
+              borderRadius={15}
+              >
+                <Heading as='h2' fontSize={'1.2em'}>Sobre Habitaciones y Servicios</Heading>
               <Field name="habitaciones">
                 {({ form }) => (
                   <FormControl>
@@ -408,7 +434,7 @@ export const FormConsulta = () => {
                   </FormControl>
                 )}
               </Field>
-              jsxCopy
+            
               <Field name="servicioAdicional">
                 {({ field, form }) => (
                   <FormControl>
@@ -459,6 +485,7 @@ export const FormConsulta = () => {
                   </FormControl>
                 )}
               </Field>
+              </Box>
               <Button
                 m={4}
                 variant={"filled"}

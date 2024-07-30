@@ -9,10 +9,14 @@ import {
   DrawerOverlay,
   Flex,
   HStack,
+  Hide,
   IconButton,
+  Image,
   Img,
+  Show,
   Text,
   VStack,
+  useBreakpoint,
   useBreakpointValue,
   useColorMode,
   useDisclosure,
@@ -24,38 +28,69 @@ import { LinkHover } from "./LinkHover";
 export const Header = () => {
   const location = useLocation();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const imgUrl = useBreakpointValue({
-    base: "/img/logo2linea.svg",
-    md: "/img/logo1linea.svg",
-  });
+ 
+  const isMobil = useBreakpointValue({base:true,sm:true,md:false,xl:false});
 
   return (
     <Box>
       <Box>
-        <Flex
+      {isMobil 
+      ?
+      (
+       <Flex
           h={"5.5em"}
           as="nav"
           justifyContent="space-between"
           alignItems={"center"}
-          wrap="wrap"
-          px="4.5em"
+          
+          px={["2em","4.5em"]}
           pb="1em"
           bg="brand.light"
           color={"white"}
         >
           <Flex align="center" h="100px">
             <Link to="/">
-              <Img src={imgUrl} alt="logo" width={"250px"} />
+              <Image src="/img/logo2linea.svg" alt="logo" minW={'150px'} />
+            </Link>
+          </Flex>
+
+          <IconButton 
+            // size="md"
+            icon={<HamburgerIcon />}
+            aria-label="Open Menu"
+            display={{ md: "none" }}
+            onClick={onOpen}
+            color="secondary.500"
+            bg="brand.default"
+            _hover='none'
+          />
+        </Flex>
+      ):(
+<Flex
+          h={"5.5em"}
+          as="nav"
+          justifyContent="space-between"
+          alignItems={"center"}
+          
+          px={"3.5em"}
+          pb="1em"
+          bg="brand.light"
+          color={"white"}
+        >
+          <Flex align="center" h="100px">
+            <Link to="/">
+              <Image src= "/img/logo1linea.svg" alt="logo" minW={'150px'} />
             </Link>
           </Flex>
 
           <Flex
-           spacing={8} 
-           width={'35em'}
+          
+          //  spacing={3} 
+           width={'400px'}
            justifyContent={'center'}
            gap={'1em'}
            flexShrink={0}
-           display={{ base: "none", sm: "flex" }}
+          //  display={{ base: "none",sm:'none', md: "flex" }}
            mr={"5%"}>
             <LinkHover to="/nosotros" currentPath={location.pathname}>
               Sobre Nosotros
@@ -64,33 +99,24 @@ export const Header = () => {
               Sitios de Interes
             </LinkHover>
 
-         
-            {/* <Box>
-              <IconButton
-                ml={4}
-                aria-label="Toggle Color Mode"
-                color={colorMode === "dark" ? "text.default" : "text.dark"}
-                bg={"transparent"}
-                icon={colorMode === "dark" ? <MoonIcon /> : <SunIcon />}
-                onClick={toggleColorMode}
-              />
-            </Box> */}
           </Flex>
-          <Button variant="filled">
+          
+          <Button variant="filled"  >
               <Link to={"/consulta"}>Consultar</Link>
             </Button>
-
-          <IconButton
-            size="md"
+         
+          <IconButton 
+            // size="md"
             icon={<HamburgerIcon />}
             aria-label="Open Menu"
-            display={{ sm: "none" }}
+            display={{ md: "none" }}
             onClick={onOpen}
             color="secondary.500"
             bg="brand.default"
           />
         </Flex>
-
+       
+      )}
         <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
           <DrawerOverlay />
           <DrawerContent bg="brand.light" color="secondary.500">

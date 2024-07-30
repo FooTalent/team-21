@@ -22,7 +22,7 @@ export const Carousel = ({ slides }) => {
   }, [nextSlide]);
 
   return (
-    <Box position="relative" height="80vh" overflow="hidden">
+    <Box position="relative" height={["70vh","80vh"]} overflow="hidden">
       <motion.div
         key={currentSlide}
         initial={{ opacity: 0 }}
@@ -49,7 +49,7 @@ export const Carousel = ({ slides }) => {
         >
           <Text
           w={'65%'}
-          fontSize="3.5em"
+          fontSize={["2.1em","3.5em"]}
           textShadow={'2px 2px 2px #909090'}
           fontWeight="700" 
            mb={4}

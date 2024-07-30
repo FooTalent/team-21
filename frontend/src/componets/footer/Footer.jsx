@@ -23,7 +23,7 @@ export const Footer = () => {
 
   return (
     <>
-      <Center w="100vw" bg="primary.500" pt={"15px"}>
+      <Center w="100%" bg="primary.500" pt={"15px"}>
         <Img src={imgUrl} width={"250px"} />
       </Center>
       <Box

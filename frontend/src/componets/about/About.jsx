@@ -3,21 +3,22 @@ import { Box, Center, Img, Text } from "@chakra-ui/react";
 export const About = () => {
   return (
     <Center
+    
       bg={"secondary.200"}
       flexWrap={"wrap"}
-      py={[2,'4.5em']}
-      px={[2, '7.5em']}
+      py={['1em','2em','4.5em']}
+      px={['1em','1.5em','3.5em', '7.5em']}
       paddingTop={3}
       paddingBottom={5}
     >
-      <Box
+      <Box w={'100%'}
         display={"flex"}
-        flexDirection={["column", "column", "row"]}
+        flexDirection={["column", "column" ,"column","row"]}
         justifyContent={"space-around"}
-        p={"10px"}
+       
       >
         <Box
-          w={["100%", "100%", "50%"]}
+          w={["100%", "100%","100%" ,"50%"]}
           flexDirection={["column", "column", "row"]}
           fontFamily={"Poppins"}
           
@@ -27,7 +28,7 @@ export const About = () => {
             w={'70%'}
             
             fontStyle={'normal'}
-            fontSize={["1.2em", "1.5em", "2.9em"]}
+            fontSize={["1.2em", "1.5em","2.5em", "3em"]}
             fontWeight={400}
             textAlign={"left"}
             lineHeight={'116%'}
@@ -47,7 +48,7 @@ export const About = () => {
             amenidades que garantizan una estancia memorable.
           </Text>
         </Box>
-        <Box flexDirection={["column", "row"]} w='36em' >
+        <Box  w={['16em','25em','36em']} >
           <Img src="/img/about.png" />
         </Box>
       </Box>

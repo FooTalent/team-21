@@ -9,8 +9,9 @@ import { Box, Center, Flex } from "@chakra-ui/react";
 function App() {
   return (
     <Flex
-      minW={"300px"}
+      // minW={"300px"}
       width={["100", "100", "95", "90", "90"]}
+     
       flexDir={"column"}
     >
       <Header />

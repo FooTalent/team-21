@@ -21,15 +21,18 @@ import { useNavigate } from "react-router-dom";
 
 
 export const Login = () => {
+ 
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { login} = useContext(UsuarioContext);
 
   const [ver, setVer] = useState("password");
+
   function verClave(event) {
     event.preventDefault();
     ver == "password" ? setVer("text") : setVer("password");
   }
+
   const handleSubmit = (e) => {
     //e.preventDefault();
     // Aquí irían las validaciones y la llamada a la API
@@ -61,12 +64,14 @@ export const Login = () => {
           initialValues={{ usuario: "", password: "" }}
           
           onSubmit={(values, { setSubmitting }) => {
-            if ('Admin' == values.usuario && 'Admin1234' == values.password) {
+            
+            login( values)
+              if (login){
+            // if ('Admin' == values.usuario && 'Admin1234' == values.password) {
               
            
               // actualizarLogin(true)
               // console.log("entra");
-              login({ id: 1, name: 'Admin' });
               const origin = location.state?.from?.pathname || '/admin/home';
               navigate(origin);
              

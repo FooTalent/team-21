@@ -47,7 +47,7 @@ export const Service = () => {
       <Text as='h2'
       fontSize={'2.8em'}
       color={'neutral.950'}>Nuestros servicios</Text>
-      <SimpleGrid columns={3} width="100%">
+      <SimpleGrid columns={[1,2,2,3]} width="100%">
         <Feature
           icon={<Image src={'/icons/computer.png'} w='3.4em' h='3.4em'/>} 
           text="Espacio de Trabajo"
