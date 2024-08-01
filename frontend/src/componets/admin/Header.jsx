@@ -2,11 +2,16 @@ import { Button, Flex, Img, useBreakpointValue } from "@chakra-ui/react"
 import { useContext } from "react";
 import { Link } from "react-router-dom"
 import { UsuarioContext } from "../../context/UsuarioContext";
-
+import { useNavigate } from "react-router-dom";
 
 
 const Header = () => {
-  const {logout, cookie} = useContext(UsuarioContext)
+  const navigate = useNavigate();  
+  const {logout} = useContext(UsuarioContext)
+  const closeSession=()=>{
+    logout();
+   navigate('/');
+  }
   const imgUrl = useBreakpointValue({
     base: "/img/logo2linea.svg",
     md: "/img/logo1linea.svg",
@@ -20,14 +25,9 @@ const Header = () => {
     bgColor={'secondary.500'}
      w={'100px'} 
      mx={'10px'} 
-     onClick={logout}
+     onClick={closeSession}
      >Logout</Button>
-         <Button 
-    bgColor={'secondary.500'}
-     w={'100px'} 
-     mx={'10px'} 
-     onClick={cookie}
-     >Cookie</Button>
+
   </Flex>
   )
 }

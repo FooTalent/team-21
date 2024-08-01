@@ -15,9 +15,9 @@ export const ReservasProvider = ({children}) => {
               URL_BASE + "/api-reservation/reservationroom/",
             {
               headers:{
-                // 'Content-Type': 'application/json',
+                'Content-Type': 'application/json',
                 'accept': 'application/json',
-                'x-csrftoken':'DM3R9wbYwPJ195f8JWdb2wgyVY5IhmBh'
+                // 'x-csrftoken':'DM3R9wbYwPJ195f8JWdb2wgyVY5IhmBh'
                
               },
               withCredentials: true
