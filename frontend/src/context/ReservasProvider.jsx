@@ -12,12 +12,22 @@ export const ReservasProvider = ({children}) => {
           //realice un cambio para tomar el listado desde quotation
           //const response = await axios.get(URL_BASE+'/api-reservation/reservationroom/');
           const response = await axios.get(
-            URL_BASE + "/api-reservation/reservationroom/"
+              URL_BASE + "/api-reservation/reservationroom/",
+            {
+              headers:{
+                // 'Content-Type': 'application/json',
+                'accept': 'application/json',
+                'x-csrftoken':'DM3R9wbYwPJ195f8JWdb2wgyVY5IhmBh'
+               
+              },
+              withCredentials: true
+            }
           );
           setReservas(response.data);
         } catch (error) {
-          setError(error.message);
-          setCargando(false);
+          console.log("No se llevo a cabo la consultas");
+          // setError(error.message);
+          // setCargando(false);
         }
       };
       useEffect(()=>{

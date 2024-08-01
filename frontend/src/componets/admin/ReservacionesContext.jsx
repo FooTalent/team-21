@@ -35,9 +35,7 @@ export const ReservacionesContext = () => {
   }, [updateRoom]);
   return (
     <>
-      <Header imgUrl={"/img/logo2linea.svg"} />
-
-      <Box
+          <Box
         display="flex"
         flexDirection="column"
         alignItems="center"

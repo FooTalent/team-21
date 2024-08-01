@@ -15,10 +15,27 @@ export const HabitacionProvider = ({ children }) => {
   const obtenerDatos = async () => {
     try {
       const respuesta = await axios.get(
-        URL_BASE+"/api-room/roomtype/",{withCredentials:true}
+        URL_BASE+"/api-room/roomtype/",
+        {
+          headers:{
+            'Content-Type': 'application/json',
+            'accept': '*/*',
+            // 'X-CSRFToken':'swn3VTlqZEQ6pz0JeNYMKRTs2h4rv15F'
+          },
+          withCredentials: true
+         
+        }
       ); // Cambia la URL por tu endpoint
       const imagen = await axios.get(
-        URL_BASE+"/api-room/roomphoto/",{withCredentials:true}
+        URL_BASE+"/api-room/roomphoto/", {
+          headers:{
+            'Content-Type': 'application/json',
+            'accept': '*/*',
+           'X-CSRFToken':'swn3VTlqZEQ6pz0JeNYMKRTs2h4rv15F'
+          },
+          withCredentials: true
+         
+        }
       );
       setImgRooms(imagen.data);
       setRooms(respuesta.data);
@@ -36,7 +53,16 @@ export const HabitacionProvider = ({ children }) => {
     try {
       //realice un cambio para tomar el listado desde quotation
       //const response = await axios.get(URL_BASE+'/api-reservation/reservationroom/');
-      const response = await axios.get(URL_BASE + "/api-quotation/quotation/",{withCredentials:true});
+      const response = await axios.get(URL_BASE + "/api-quotation/quotation/", 
+        {
+        headers:{
+          'Content-Type': 'application/json',
+          'accept': '*/*',
+          'x-csrftoken':'swn3VTlqZEQ6pz0JeNYMKRTs2h4rv15F'
+        },
+        withCredentials: true
+       
+      });
       setConsultas(response.data);
     } catch (error) {
       setError(error.message);
@@ -49,7 +75,16 @@ export const HabitacionProvider = ({ children }) => {
       //realice un cambio para tomar el listado desde quotation
       //const response = await axios.get(URL_BASE+'/api-reservation/reservationroom/');
       const response = await axios.get(
-        URL_BASE + "/api-reservation/reservationroom/"
+        URL_BASE + "/api-reservation/reservationroom/",
+        {
+          headers:{
+            'Content-Type': 'application/json',
+            'accept': '*/*',
+            'x-csrftoken':'swn3VTlqZEQ6pz0JeNYMKRTs2h4rv15F'
+          },
+          withCredentials: true
+         
+        }
       );
       setReservas(response.data);
     } catch (error) {

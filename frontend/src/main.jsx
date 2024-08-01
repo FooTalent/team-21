@@ -75,10 +75,10 @@ const router = createBrowserRouter([
         path: "nueva",
         element: <NuevaHabitacion />,
       },
-      {
-        path: "reservaciones",
-        element: <Reservaciones />,
-      },
+      // {
+      //   path: "reservaciones",
+      //   element: <Reservaciones />,
+      // },
       {
         path: "reservacontext",
         element: <ReservacionesContext />,
