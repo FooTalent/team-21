@@ -41,9 +41,10 @@ class LoginView(APIView):
 class LogoutView(APIView):
     #Enviar en la cabesera de la peticion 'X-CSRFToken': <csrftoken>
     #permission_classes = [IsAuthenticated]
-    print("Headers:", request.headers)
-    print("CSRF cookie:", request.COOKIES.get('csrftoken'))
-    print("CSRF from header:", request.META.get('HTTP_X_CSRFTOKEN'))
+    
     def post(self, request):
+        print("Headers:", request.headers)
+        print("CSRF cookie:", request.COOKIES.get('csrftoken'))
+        print("CSRF from header:", request.META.get('HTTP_X_CSRFTOKEN'))
         logout(request)
         return Response({'detail': 'Logged out successfully'})
