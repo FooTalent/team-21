@@ -152,6 +152,7 @@ CSRF_COOKIE_SECURE = False
 #Previene acceso por JavaScript tambien lo cambio a false Omar
 CSRF_COOKIE_HTTPONLY = False
 #Agrego esta linea SESSION_COOKIE_HTTPONLY = False
+SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_HTTPONLY = False
 #1 semana, en segundos
 SESSION_COOKIE_AGE = 604800
