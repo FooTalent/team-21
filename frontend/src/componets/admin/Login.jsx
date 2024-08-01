@@ -77,7 +77,7 @@ export const Login = () => {
               if (login){
             // if ('Admin' == values.usuario && 'Admin1234' == values.password) {
             // actualizarLogin(true)
-              // console.log("entra");
+               console.log("entra");
               const origin = location.state?.from?.pathname || '/admin/home';
               navigate(origin);
        

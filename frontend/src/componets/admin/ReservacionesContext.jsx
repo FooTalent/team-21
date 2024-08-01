@@ -22,6 +22,7 @@ import { ReservasContext } from "../../context/ReservasContext";
 export const ReservacionesContext = () => {
   const { reservas, obtenerReservas, updateRoom } = useContext(ReservasContext);
   const { consultas } = useContext(HabitacionContext);
+  
   const [filtro, setFiltro] = useState("all");
   const isMobile = useBreakpointValue({
     base: true,

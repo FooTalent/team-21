@@ -10,7 +10,7 @@ const Header = () => {
   const {logout} = useContext(UsuarioContext)
   const closeSession=()=>{
     logout();
-   navigate('/');
+  //  navigate('/');
   }
   const imgUrl = useBreakpointValue({
     base: "/img/logo2linea.svg",
