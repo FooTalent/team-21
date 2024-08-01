@@ -147,9 +147,12 @@ REST_FRAMEWORK = {
     ]
 }
 #Solo envía la cookie sobre HTTPS
-CSRF_COOKIE_SECURE = True
-#Previene acceso por JavaScript
-CSRF_COOKIE_HTTPONLY = True
+#cambio la linea a false para probar Omar
+CSRF_COOKIE_SECURE = False
+#Previene acceso por JavaScript tambien lo cambio a false Omar
+CSRF_COOKIE_HTTPONLY = False
+#Agrego esta linea SESSION_COOKIE_HTTPONLY = False
+SESSION_COOKIE_HTTPONLY = False
 #1 semana, en segundos
 SESSION_COOKIE_AGE = 604800
 
