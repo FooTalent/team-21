@@ -5,6 +5,8 @@ from rest_framework import status, serializers
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiResponse
 from drf_spectacular.types import OpenApiTypes
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
@@ -35,9 +37,10 @@ class LoginView(APIView):
     responses={200: OpenApiResponse(description='Logged out successfully'),
                403: OpenApiResponse(description="CSRF Failed: CSRF token from the 'X-Csrftoken' HTTP header incorrect.")}
 )  
+#@method_decorator(csrf_exempt, name='dispatch')
 class LogoutView(APIView):
     #Enviar en la cabesera de la peticion 'X-CSRFToken': <csrftoken>
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
     def post(self, request):
         logout(request)
         return Response({'detail': 'Logged out successfully'})
