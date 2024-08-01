@@ -37,7 +37,7 @@ class LoginView(APIView):
     responses={200: OpenApiResponse(description='Logged out successfully'),
                403: OpenApiResponse(description="CSRF Failed: CSRF token from the 'X-Csrftoken' HTTP header incorrect.")}
 )  
-#@method_decorator(csrf_exempt, name='dispatch')
+@method_decorator(csrf_exempt, name='dispatch')
 class LogoutView(APIView):
     #Enviar en la cabesera de la peticion 'X-CSRFToken': <csrftoken>
     #permission_classes = [IsAuthenticated]
