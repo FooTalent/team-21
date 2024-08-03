@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { UsuarioContext } from "./UsuarioContext";
 import Cookies from "js-cookie";
 import axios from "axios";
+const apiUrl = import.meta.env.VITE_API_URL;
 import { useNavigate } from "react-router-dom";
 
 export const UsuarioProvider = ({ children }) => {
@@ -28,9 +29,9 @@ export const UsuarioProvider = ({ children }) => {
   };
   
   const login = async (userData) => {
+    console.log(apiUrl)
     if(!Cookies.get('sessionid'))
     {
-
       try {
         const response = await axios.post(
         "/api/api-auth/login-view/",
