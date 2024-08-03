@@ -13,7 +13,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { ErrorMessage, Field, Form, Formik} from "formik";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 
 import { UsuarioContext } from "../../context/UsuarioContext";
@@ -25,7 +25,7 @@ export const Login = () => {
  
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { login} = useContext(UsuarioContext);
+  const { login, usuario,userSave} = useContext(UsuarioContext);
 
   const [ver, setVer] = useState("password");
 
@@ -33,15 +33,11 @@ export const Login = () => {
     event.preventDefault();
     ver == "password" ? setVer("text") : setVer("password");
   }
+  useEffect(() => {
+    userSave();
+  }, []);
 
-  // const handleSubmit = (e) => {
-  //   // e.preventDefault();
-  //   login(e);
-  //   // Aquí irían las validaciones y la llamada a la API
-  //   // login({ id: 1, name: 'Admin' });
-  //   localStorage.setItem('usuario', JSON.stringify({ id: 1, name: 'Administrador' }));
-  //   navigate('/admin/home');
-  // };
+  
   return (
     <VStack 
     h={'100vh'}
@@ -72,21 +68,28 @@ export const Login = () => {
           initialValues={{ usuario: "", password: "" }}
           
           onSubmit={(values, { setSubmitting }) => {
-            
-            login( values)
-              if (login){
-            // if ('Admin' == values.usuario && 'Admin1234' == values.password) {
-            // actualizarLogin(true)
-               console.log("entra");
+            userSave();
+           
+            console.log(usuario);
+            if (usuario.csrftoken!=='') {
+            // // actualizarLogin(true)
+             login( values)
               const origin = location.state?.from?.pathname || '/admin/home';
-              navigate(origin);
+              // console.log(origin);
+            
+               navigate(origin);
+
+           
        
             } else {
-         
-              setError("Credenciales invalidas");
+              console.log("sin user en el local");
+             
+              navigate('/admin/habitacion')
+              // setError("Credenciales invalidas");
             }
+           
 
-            setSubmitting(true);
+            setSubmitting(false);
 
           }}
         >

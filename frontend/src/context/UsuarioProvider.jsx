@@ -1,79 +1,107 @@
-import { useEffect, useState } from "react"
-import { UsuarioContext } from "./UsuarioContext"
-import Cookies from 'js-cookie';
+import { useEffect, useState } from "react";
+import { UsuarioContext } from "./UsuarioContext";
+import Cookies from "js-cookie";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-
-
-export const UsuarioProvider = ({children}) => {
+export const UsuarioProvider = ({ children }) => {
   //  const URL_BASE = 'https://hotel-oceano.onrender.com' //SERVIDOR DE JAVIER
-  const URL_BASE = 'https://hotel-ey89.onrender.com' //SERIVIDOR OMAR
-  axios.defaults.baseURL= "https://hotel-ey89.onrender.com";
-  axios.defaults.withCredentials = true; 
-  
-  const [usuario, setUsuario] = useState(false);
+  // const URL_BASE = "https://hotel-ey89.onrender.com"; //SERIVIDOR OMAR
 
-  useEffect(() => {
-    const usuarioGuardado = localStorage.getItem('usuario');
+  const [usuario, setUsuario] = useState({});
+
+  
+  const userSave=()=>{
+     const usuarioGuardado = localStorage.getItem("usuario");
     if (usuarioGuardado) {
       setUsuario(JSON.parse(usuarioGuardado));
     }
-  }, []);
+  }
+  // useEffect(() => {
+  //   userSave();
+  // }, []);
 
   // Configuración inicial de Axios
-const headers={
-  'Content-Type': 'application/json',
-  'accept': '*/*',
-}
+  const headers = {
+    "Content-Type": "application/json",
+    'accept': "*/*",
+  };
+  
+  const login = async (userData) => {
+    if(!Cookies.get('sessionid'))
+    {
 
-
-  const login =async (userData) => {
-    try{
-      const response =await axios.post(`${URL_BASE}/api-auth/login-view/`,
-      {
-        username:userData.usuario,
-        password:userData.password
-      },
-      {
-        headers:headers,
-        withCredentials: true
+      try {
+        const response = await axios.post(
+        "/api/api-auth/login-view/",
+        {
+          username: userData.usuario,
+          password: userData.password,
+        },
+        {
+          headers: headers,
+          withCredentials: true,
+        }
+      );
+      console.log(response.data);
+      console.log(document.cookie);
+      console.log(Cookies.get('csrftoken'));
+      const data = {
+        "username": userData.usuario,
+        "password": userData.password,
+        "csrftoken": Cookies.get('csrftoken'),
+        "sessionid": Cookies.get('sessionid'),
+        
       }
-    );
-    const csrfToken = Cookies.get('crsftoken');
-    console.log(csrfToken);
-    setUsuario(true);
-    localStorage.setItem('usuario', JSON.stringify(userData));
-   
-  }catch(error){
-   alert('Credenciales invalidas')
+      setUsuario(data);
+      console.log(data);
+      localStorage.setItem("usuario", JSON.stringify(data));
+      // window.location.href = '/admin/home';
+    } catch (error) {
+      alert("Credenciales invalidas pero no aca ");
+    }
   }
   };
 
-  const logout = async() => {
-    try{
-      const response =await axios.post(`${URL_BASE}/api-auth/logout-view/`,
-      {
-        headers:{
-          // 'Content-Type': 'application/json',
-          "accept": "*/*",
-          "X-CSRF-TOKEN":"R7toMMfr5eFe734TE1nJSKnIDebck9i9"
-        },
-        withCredentials: true
-      }
-    );
-    setUsuario(false);
-    console.log('Sali');
-    localStorage.removeItem('usuario');
+  const logout = async () => {
+    try {
+      console.log(document.cookie);
 
-    }catch(error){
-      console.log(error);
-      }
+      const cookieValue = Cookies.get("csrftoken", { path: "/" });
+      console.log("cookieValue" + cookieValue);
+      const response = await axios.post(
+        "/api/api-auth/logout-view/",
+        {},
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": cookieValue,
+
+            // "sessionid":"",
+          },
+
+          withCredentials: true,
+        }
+      );
+      
+    } catch (error) {
+      localStorage.removeItem("usuario");
+      console.log("algo paso"+error);
+    }
+    setUsuario(false);
+
   };
 
-
-    return (
-    <UsuarioContext.Provider value={{usuario,login, logout}}>
-        {children}
+  return (
+    <UsuarioContext.Provider
+      value={{
+        usuario,
+        login,
+        logout,
+        userSave,
+      }}
+    >
+      {children}
     </UsuarioContext.Provider>
-  )
-}
+  );
+};
