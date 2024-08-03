@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { HabitacionContext } from "./HabitacionContext";
 import axios from "axios";
+import Cookies from 'js-cookie';
 
 export const HabitacionProvider = ({ children }) => {
   // const URL_BASE = "https://hotel-oceano.onrender.com";
@@ -56,17 +57,17 @@ export const HabitacionProvider = ({ children }) => {
     try {
       //realice un cambio para tomar el listado desde quotation
       //const response = await axios.get(URL_BASE+'/api-reservation/reservationroom/');
+      const cookieValue = Cookies.get("csrftoken", { path: "/" });
       const response = await axios.get("/api/api-quotation/quotation/", 
-      //   {
-      //   headers:{
-      //     'Content-Type': 'application/json',
-      //     'accept': '*/*',
-      //     'X-CSRFToken':'yJ1aAdAyStBzIYCETBt6i19ZhAKbTN5o',
-          
-      //   },
-      //   withCredentials: true
+        {
+        
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": cookieValue,
+          },
+        withCredentials: true
        
-      // }
+      }
     );
       setConsultas(response.data);
     } catch (error) {

@@ -16,12 +16,16 @@ export const ReservasProvider = ({children}) => {
         try {
           //realice un cambio para tomar el listado desde quotation
           // const response = await axios.get(`${URL_BASE}/api-reservation/reservationroom/`);
-          
+          const cookieValue = Cookies.get("csrftoken", { path: "/" });
           const response = await axios.get('/api/api-reservation/reservationroom/',
             {
+              headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": cookieValue,
+              },
               withCredentials:true,
              
-              xsrfCookieName: 'csrftoken',
+             
             }
            );
           setReservas(response.data);
