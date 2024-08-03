@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
     };
   } else if (mode === 'production') {
     return {
-      base: '/team-night-hotel.vercel.app/',
+      // base: '/hotel-oceano.vercel.app/',
       plugins: [react()],
       build: {
         outDir: 'dist',

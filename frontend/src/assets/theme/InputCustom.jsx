@@ -24,7 +24,6 @@ export const InputCustom = {
         height: "40px",
         padding: "10px 16px",
         borderRadius: "5px ",
-        border: "1px solid ",
         _placeholder: {
             color: "varios.500",
             fontStyle: 'italic',
