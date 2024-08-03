@@ -23,7 +23,7 @@ export default defineConfig(({ mode }) => {
       }
     },
     plugins: [react()],
-    base: mode === 'production' ?  '/laputita/' : '/',
+    base: mode === 'production' ?  'https://hotel-oceano.onrender.com' : '/',
     build: {
       outDir: 'dist',
     },
