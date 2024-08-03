@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 
 export default defineConfig(({ mode }) => {
+  console.log(`Current mode: ${mode}`); // Muestra el modo actual en la consola
   if (mode === 'development') {
     return {
       server: {
@@ -18,7 +19,7 @@ export default defineConfig(({ mode }) => {
     };
   } else if (mode === 'production') {
     return {
-      base: '/team-night-hotel/',
+      base: '/team-night-hotel.vercel.app/',
       plugins: [react()],
       build: {
         outDir: 'dist',
