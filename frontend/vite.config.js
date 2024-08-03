@@ -19,7 +19,11 @@ export default defineConfig(({ mode }) => {
     };
   } else if (mode === 'production') {
     return {
+<<<<<<< HEAD
       // base: '/hotel-oceano.vercel.app/',
+=======
+      base: '/hotel-oceano.vercel.app/',
+>>>>>>> 4466bfc15714c95b1d3b0c86d95397703c96a233
       plugins: [react()],
       build: {
         outDir: 'dist',
@@ -27,4 +31,3 @@ export default defineConfig(({ mode }) => {
     };
   }
 });
-
