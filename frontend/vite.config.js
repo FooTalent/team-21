@@ -6,9 +6,11 @@ export default defineConfig(({ mode }) => {
   // Cargar las variables de entorno
   const env = loadEnv(mode, process.cwd(), '');
   const apiURL = env.VITE_API_URL;
-console.log(apiURL);
+  console.log(env);
+  console.log(apiURL);
   return {
     server: {
+      
       proxy: {
         '/api': {
 
@@ -21,7 +23,7 @@ console.log(apiURL);
       }
     },
     plugins: [react()],
-    base: apiURL,
+    base: mode === 'production' ?  '/laputita/' : '/',
     build: {
       outDir: 'dist',
     },

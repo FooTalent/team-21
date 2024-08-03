@@ -18,6 +18,8 @@ import { MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 export const Footer = () => {
+
+  console.log(import.meta.env.VITE_API_URL);
   
   const imgUrl = useBreakpointValue({base:"/img/logo2linea.svg", md: "/img/logo1linea.svg"})
 
