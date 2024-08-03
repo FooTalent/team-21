@@ -6,7 +6,7 @@ export default defineConfig(({ mode }) => {
   // Cargar las variables de entorno
   const env = loadEnv(mode, process.cwd(), '');
   const apiURL = env.VITE_API_URL;
-
+console.log(apiURL);
   return {
     server: {
       proxy: {
@@ -21,6 +21,7 @@ export default defineConfig(({ mode }) => {
       }
     },
     plugins: [react()],
+    base: apiURL,
     build: {
       outDir: 'dist',
     },
