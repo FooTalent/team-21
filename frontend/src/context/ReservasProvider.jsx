@@ -9,7 +9,15 @@ export const ReservasProvider = ({children}) => {
  
     const [reservas, setReservas] = useState([]);
     const [updateRoom, setUpdateRoom] = useState(false);
-    
+
+    const axiosInstance = axios.create({
+      baseURL: import.meta.env.VITE_API_URL,
+      headers: {
+        'Content-Type': 'application/json',
+         'accept': "*/*",
+  
+      },
+    });
     
 
     const obtenerReservas = async () => {
@@ -17,7 +25,7 @@ export const ReservasProvider = ({children}) => {
           //realice un cambio para tomar el listado desde quotation
           // const response = await axios.get(`${URL_BASE}/api-reservation/reservationroom/`);
           const cookieValue = Cookies.get("csrftoken", { path: "/" });
-          const response = await axios.get('/api/api-reservation/reservationroom/',
+          const response = await axiosInstance.get('/api-reservation/reservationroom/',
             {
               headers: {
                 "Content-Type": "application/json",
