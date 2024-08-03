@@ -15,5 +15,5 @@ export default defineConfig({
   //   }
   // },
   plugins: [react()],
-  // base:'/team-night-hotel/',
+  // base:'/hotel-oceano.vercel.app/',
 })
