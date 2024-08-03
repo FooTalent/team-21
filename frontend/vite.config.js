@@ -19,6 +19,16 @@ export default defineConfig(({ mode }) => {
     };
   } else if (mode === 'production') {
     return {
+     server: {
+        proxy: {
+          '/api': {
+            target: 'https://team-night-hotel.vercel.app',
+            changeOrigin: true,
+            rewrite: (path) => path.replace(/^\/api/, ''),
+            secure: false,
+          }
+        }
+      },
       plugins: [react()],
       build: {
         outDir: 'dist',
