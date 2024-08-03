@@ -20,6 +20,7 @@ import { useContext, useEffect, useState } from "react";
 import { RoomCardConfirmModal } from "./RoomCardConfirmModal.jsx";
 import { HabitacionContext } from "../../context/HabitacionContext.jsx";
 import axios from "axios";
+import ExitoModal from "./ExitoModal.jsx";
 // import { ReservasContext } from "../../context/ReservasContext.jsx";
 
 export const RoomCardConsulta = ({
@@ -40,6 +41,10 @@ export const RoomCardConsulta = ({
   const [isDeleting, setIsDeleting] = useState(false);
   const { setUpdateRoom, updateRoom} = useContext(HabitacionContext); //tomado de Habitaciones
   // const { setUpdateRoom, updateRoom} = useContext(ReservasContext);
+  const [isExitoOpen, setIsExitoOpen] = useState(false);
+  const [msjOk,setMsjOk]= useState('' )
+  const [msjError,setMsjError]= useState('' )
+  const [submissionStatus ,setSubmissionStatus]= useState('' )
 
   const getRoomType= async(id)=>{
     try{
@@ -80,67 +85,36 @@ export const RoomCardConsulta = ({
   const [data,setData]=useState({})
   const cliente = consulta.client.is_company? consulta.client.company.name : consulta.client.individual.first_name;
   
-  const transformData = () => {
-    
-    return {
-      client: {
-       
-        is_company: data.client.is_company,
-        email: data.client.email,
-        phone: data.client.phone,
-        zip_code: data.client.zip_code,
-        individual: {
-          first_name: data.client.is_company?'s':data.client.individual.first_name, // Asignar valores adecuados
-          last_name:  data.client.is_company? 's':data.client.individual.last_name   // Asignar valores adecuados
-        },
-        company: {
-          name:  data.client.is_company?  data.client.company.name:'s',
-          manager:  data.client.is_company?  data.client.company.manager : 's' ,
-          address:  data.client.is_company?  data.client.company.name : 's'
-        }
-      },
-      start_date: data.start_date,
-      end_date: data.end_date,
-      people: data.people,
-      payment_method: data.payment_method,
-      status: 'D', 
-      room_types: data.room_types.map(rt => ({
-        room_type_id: rt.room_type_id,
-        quantity: rt.quantity
-      })),
-      services: data.services.map(s => ({
-        service_id: s.service_id,
-        quantity: s.quantity
-      }))
-    };
-  };
-
+  
   const onDelete = async (id) => {
     try {
       const response = await axios.get(`${BASE_URL}/api-quotation/quotation/${id}/`);
-      // const cli = axios.get(`${BASE_URL}/api-client/client/${response.data.client.id}/`)
-      // console.log(cli.data);
-      console.log(response.data.client.id);
-      setData(response.data)
-      const updateData=transformData()
-      // console.log(updateData);
-      if(updateData){
+       setData(response.data)
+          
+      if(response.data){
         
-        console.log(JSON.stringify(updateData));
-        await axios.put(
-          `${BASE_URL}/api-quotation/quotation/${id}/`, updateData)
-          .then(response=>{
-              console.log("Datos actaulizados correctamente");
-          })
-          .catch(error=>{
-            console.log("Error al actualizar");
-          })
+        // console.log("Data para actu"+JSON.stringify(updateData));
+        await axios.patch(
+          `${BASE_URL}/api-quotation/quotation/${id}/`,{status:"D"},
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+          }
+        )
+       
           
         }
-      
-      setUpdateRoom(true);
+        setMsjOk("La reserva fue Confirmada");
+        setIsExitoOpen(true);
+        setSubmissionStatus('success')
+       setUpdateRoom(true);
       // setHabitaciones(habitaciones.filter(hab => hab.id !== id));
     } catch (error) {
+      setMsjOk("Algo salio mal");
+      setIsExitoOpen(true);
+      setSubmissionStatus('error')
       console.error("Error al eliminar la consulta:", error);
     }
   };
@@ -157,7 +131,21 @@ export const RoomCardConsulta = ({
       setIsDeleting(false);
     }
   };
+  const cerrarModales=()=>{
+    setIsExitoOpen(false);
+   
+  }
+
   return (
+    <>
+     <ExitoModal 
+    isOpen={isExitoOpen}
+    onClose={cerrarModales}
+    onClick={cerrarModales}
+    submissionStatus={submissionStatus}
+    msjOk = {msjOk}
+    msjError ={msjError}
+    />
     <Box
       flexDirection="column"
       alignItems="center"
@@ -308,5 +296,6 @@ export const RoomCardConsulta = ({
           </Modal>
     </Box>
     
+    </>
   );
 };

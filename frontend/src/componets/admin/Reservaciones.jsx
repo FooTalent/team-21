@@ -72,7 +72,9 @@ export const Reservaciones = () => {
         <MenuReservas setFiltro={setFiltro} filtro={filtro} />
 
         {filtro == "all"
-          ? consultas.map((consulta) => (
+          ? consultas
+          .filter((consulta)=>consulta.status==='A')  
+          .map((consulta) => (
               <RoomCardConsulta key={consulta.id} consulta={consulta} />
             ))
           : reservas

@@ -22,6 +22,7 @@ import { ReservasContext } from "../../context/ReservasContext";
 export const ReservacionesContext = () => {
   const { reservas, obtenerReservas, updateRoom } = useContext(ReservasContext);
   const { consultas } = useContext(HabitacionContext);
+  
   const [filtro, setFiltro] = useState("all");
   const isMobile = useBreakpointValue({
     base: true,
@@ -35,9 +36,7 @@ export const ReservacionesContext = () => {
   }, [updateRoom]);
   return (
     <>
-      <Header imgUrl={"/img/logo2linea.svg"} />
-
-      <Box
+          <Box
         display="flex"
         flexDirection="column"
         alignItems="center"

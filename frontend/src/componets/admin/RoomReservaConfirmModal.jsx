@@ -115,6 +115,17 @@ export const RoomReservaConfirmModal = ({
           },
         }
       );
+      await axios.patch(
+        `${BASE_URL}/api-quotation/quotation/${id}/`,{status:"D"},
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      )
+     
+      
       setUpdateRoom(true);
     
       setMsjOk("La reserva fue Confirmada");
