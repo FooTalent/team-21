@@ -7,7 +7,6 @@ export const ButtonConfig = defineStyleConfig({
     filled: {
       fontWeight: 400,
       fontsize:'0.9em',
-      color:'primary.800',
       lineHeight: '142%',
       letterSpacing:'0.25px',
       h:'2.5em',
