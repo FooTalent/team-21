@@ -8,9 +8,17 @@ import { useNavigate } from "react-router-dom";
 export const UsuarioProvider = ({ children }) => {
   //  const URL_BASE = 'https://hotel-oceano.onrender.com' //SERVIDOR DE JAVIER
   // const URL_BASE = "https://hotel-ey89.onrender.com"; //SERIVIDOR OMAR
-
+ 
   const [usuario, setUsuario] = useState({});
+  const axiosInstance = axios.create({
+    baseURL: import.meta.env.VITE_API_URL,
+    headers: {
+      'Content-Type': 'application/json',
+       'accept': "*/*",
 
+    },
+  });
+  
   
   const userSave=()=>{
      const usuarioGuardado = localStorage.getItem("usuario");
@@ -25,16 +33,15 @@ export const UsuarioProvider = ({ children }) => {
   // Configuración inicial de Axios
   const headers = {
     "Content-Type": "application/json",
-    'accept': "*/*",
+   'accept': "*/*",
   };
   
   const login = async (userData) => {
-    console.log(apiUrl)
     if(!Cookies.get('sessionid'))
     {
       try {
-        const response = await axios.post(
-        "/api/api-auth/login-view/",
+        const response = await axiosInstance.post(
+        "/api-auth/login-view/",
         {
           username: userData.usuario,
           password: userData.password,
@@ -65,13 +72,15 @@ export const UsuarioProvider = ({ children }) => {
   };
 
   const logout = async () => {
+    console.log(import.meta.env.VITE_API_URL);
+
     try {
       console.log(document.cookie);
 
       const cookieValue = Cookies.get("csrftoken", { path: "/" });
       console.log("cookieValue" + cookieValue);
-      const response = await axios.post(
-        "/api/api-auth/logout-view/",
+      const response = await axiosInstance.post(
+        "/api-auth/logout-view/",
         {},
         {
           headers: {

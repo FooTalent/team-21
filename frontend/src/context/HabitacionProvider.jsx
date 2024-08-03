@@ -16,10 +16,16 @@ export const HabitacionProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [cargando, setCargando] = useState(true);
 
+  const axiosInstance = axios.create({
+    baseURL: import.meta.env.VITE_API_URL,
+    
+  });
+
+
   const obtenerDatos = async () => {
     try {
-      const respuesta = await axios.get(
-        "/api/api-room/roomtype/",
+      const respuesta = await axiosInstance.get(
+        "/api-room/roomtype/",
         {
           headers:{
             'Content-Type': 'application/json',
@@ -30,8 +36,8 @@ export const HabitacionProvider = ({ children }) => {
          
         }
       ); 
-      const imagen = await axios.get(
-        "/api/api-room/roomphoto/", {
+      const imagen = await axiosInstance.get(
+        "/api-room/roomphoto/", {
           headers:{
             'Content-Type': 'application/json',
             'accept': '*/*',
@@ -58,7 +64,7 @@ export const HabitacionProvider = ({ children }) => {
       //realice un cambio para tomar el listado desde quotation
       //const response = await axios.get(URL_BASE+'/api-reservation/reservationroom/');
       const cookieValue = Cookies.get("csrftoken", { path: "/" });
-      const response = await axios.get("/api/api-quotation/quotation/", 
+      const response = await axiosInstance.get("/api-quotation/quotation/", 
         {
         
           headers: {
