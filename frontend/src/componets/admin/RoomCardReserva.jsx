@@ -33,7 +33,7 @@ export const RoomCardReserva = ({
 
   const getClient = async () => {
     try {
-      const responseCli = await axios.get(`${BASE_URL}/api-client/client/${client_id}`);
+      const responseCli = await axios.get(`/api/api-client/client/${client_id}`);
       const cli = responseCli.data;
       setClient(cli);
       
@@ -44,7 +44,7 @@ export const RoomCardReserva = ({
 
   const getTypeRoom = async (roomTypeId) => {
     try {
-      const res = await axios.get(`${BASE_URL}/api-room/roomtype/${roomTypeId}`);
+      const res = await axios.get(`/api/api-room/roomtype/${roomTypeId}`);
       const roomTypeData = res.data;
       setRoomType(roomTypeData.type);
     } catch (error) {
@@ -55,7 +55,7 @@ export const RoomCardReserva = ({
   useEffect(() => {
     const fetchRoomData = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}/api-room/room/${room_id}`);
+        const response = await axios.get(`/api/api-room/room/${room_id}`);
         const roomData = response.data;
         setRoom(roomData);
         setRoomNumber(roomData.number);
