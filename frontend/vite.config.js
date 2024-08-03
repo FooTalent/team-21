@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => {
      server: {
         proxy: {
           '/api': {
-            target: 'https://team-night-hotel.vercel.app',
+            target: 'https://hotel-oceano.onrender.com',
             changeOrigin: true,
             rewrite: (path) => path.replace(/^\/api/, ''),
             secure: false,
