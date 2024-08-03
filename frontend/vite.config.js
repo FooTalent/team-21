@@ -23,7 +23,11 @@ export default defineConfig(({ mode }) => {
       }
     },
     plugins: [react()],
+<<<<<<< HEAD
     base: mode === 'production' ?  'https://hotel-oceano.onrender.com' : '/',
+=======
+    base: mode === 'production' ?  apiURL : '/',
+>>>>>>> 837aedf096f8f17d4ef77c92cf78391bd6256272
     build: {
       outDir: 'dist',
     },
