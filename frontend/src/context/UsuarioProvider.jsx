@@ -11,10 +11,12 @@ export const UsuarioProvider = ({ children }) => {
   const [csrfToken, setCsrfToken] = useState(null); // Estado para el token CSRF
 
   const [usuario, setUsuario] = useState({});
-  
+  const apiUrl =  import.meta.env.VITE_API_URL
+
   const axiosInstance = axios.create({
    
     // baseURL: import.meta.env.VITE_API_URL,
+    // baseURL: apiUrl,
     baseURL: '/api',
     headers: {
       "Content-Type": "application/json",
@@ -54,15 +56,8 @@ export const UsuarioProvider = ({ children }) => {
             withCredentials: true,
           }
         );
-        
-        setCsrfToken("csrf del header"+response.headers['x-csrftoken']); // Extrae el token del header de la respuesta
-        console.log('token de estado'+csrfToken);
-        console.log(Cookies.get('csrftoken', { domain: 'localhost', path: apiUrl }));
-        console.log(Cookies.get('csrftoken', { domain: 'https://hotel-ey89.onrender.com',path: apiUrl }));
-        console.log(Cookies.get('csrftoken', { domain: apiUrl, path: apiUrl }));
-        console.log(Cookies.get('csrftoken', { domain: 'http://localhost:5173', path: apiUrl }));
-       
-        console.log(Cookies.get("csrftoken"));
+        console.log(response.data);
+      
         const data = {
           username: userData.usuario,
           password: userData.password,
@@ -80,11 +75,21 @@ export const UsuarioProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    const apiUrl = import.meta.env.VITE_API_URL;
+    
     // const cookieValue =JSON.parse(localStorage.getItem('usuario'));
     // console.log(cookieValue.csrftoken);
-    const allCookies = Cookies.get();
- 
+
+    console.log('token de estado'+csrfToken);
+    console.log(Cookies.get('csrftoken', { domain: 'localhost', path: apiUrl }));
+    console.log(Cookies.get('csrftoken', { domain: 'localhost', path: '/'}));
+    console.log(Cookies.get('csrftoken', { domain: 'https://hotel-ey89.onrender.com',path: '/' }));
+    console.log(Cookies.get('csrftoken', { domain: 'https://hotel-ey89.onrender.com',path: apiUrl }));
+    console.log(Cookies.get('csrftoken', { domain: apiUrl, path: "/" }));
+    console.log(Cookies.get('csrftoken', { domain: apiUrl, path: apiUrl }));
+    console.log(Cookies.get('csrftoken', { domain: 'http://localhost:5173', path: '/' }));
+    console.log(Cookies.get('csrftoken', { domain: 'http://localhost:5173', path: apiUrl }));
+   
+    console.log(document.allCookies);
     try {
 
       const cookieValue = Cookies.get("csrftoken", { path: apiUrl});

@@ -23,7 +23,8 @@ export default defineConfig(({ mode }) => {
       },
     },
     plugins: [react()],
-    base: mode === 'production' ? apiURL : '/',
+    // base: mode === 'production' ? apiURL : '/',
+    base: apiURL,
     build: {
       outDir: 'dist',
     },
