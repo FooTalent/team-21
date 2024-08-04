@@ -1,6 +1,7 @@
-import { defineConfig, loadEnv } from 'vite';
-import react from '@vitejs/plugin-react-swc';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react-swc'
 
+<<<<<<< HEAD
 export default defineConfig(({ mode }) => {
   // Cargar las variables de entorno
   const env = loadEnv(mode, process.cwd());
@@ -28,3 +29,10 @@ export default defineConfig(({ mode }) => {
     },
   };
 });
+=======
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  // base:'/team-night-hotel/',
+})
+>>>>>>> 5bd8d7096be559e8506927c1ab059424706dab29
