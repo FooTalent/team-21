@@ -98,10 +98,10 @@ export const UsuarioProvider = ({ children }) => {
         {
           headers: {
             "Content-Type": "application/json",
-            // "X-CSRFToken": usuario.csrftoken,
+             "X-CSRFToken": usuario.csrftoken,
             // "X-XSRF-TOKEN": usuario.csrftoken,
             // "XSRF-TOKEN": usuario.csrftoken,
-            'Referer':apiUrl,
+          
 
             // "sessionid":"",
           },
