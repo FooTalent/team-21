@@ -16,8 +16,8 @@ export const UsuarioProvider = ({ children }) => {
   const axiosInstance = axios.create({
    
     // baseURL: import.meta.env.VITE_API_URL,
-    // baseURL: apiUrl,
-    baseURL: '/api',
+    baseURL: apiUrl,
+    // baseURL: '/api',
     headers: {
       "Content-Type": "application/json",
       "accept": "*/*",
@@ -39,11 +39,11 @@ export const UsuarioProvider = ({ children }) => {
   const headers = {
     "Content-Type": "application/json",
     "accept": "*/*",
+    
   };
 
   const login = async (userData) => {
-  
-    if (!Cookies.get("sessionid")) {
+       if (!Cookies.get("sessionid")) {
       try {
         const response = await axiosInstance.post(
           "/api-auth/login-view/",
@@ -56,12 +56,17 @@ export const UsuarioProvider = ({ children }) => {
             withCredentials: true,
           }
         );
-        console.log(response.data);
-      
+        const token = response.data.csrf_token;
+        setCsrfToken(token);
+        console.log('mycookie:', Cookies.get('mycookie'));
+        console.log(response);
+        // const headers = response.headers;
+        // console.log(headers);
+        // console.log(headers['date']);
         const data = {
           username: userData.usuario,
           password: userData.password,
-          csrftoken: Cookies.get("csrftoken"),
+          csrftoken: csrfToken,
           sessionid: Cookies.get("sessionid"),
         };
         setUsuario(data);
@@ -80,27 +85,23 @@ export const UsuarioProvider = ({ children }) => {
     // console.log(cookieValue.csrftoken);
 
     console.log('token de estado'+csrfToken);
-    console.log(Cookies.get('csrftoken', { domain: 'localhost', path: apiUrl }));
-    console.log(Cookies.get('csrftoken', { domain: 'localhost', path: '/'}));
-    console.log(Cookies.get('csrftoken', { domain: 'https://hotel-ey89.onrender.com',path: '/' }));
-    console.log(Cookies.get('csrftoken', { domain: 'https://hotel-ey89.onrender.com',path: apiUrl }));
-    console.log(Cookies.get('csrftoken', { domain: apiUrl, path: "/" }));
-    console.log(Cookies.get('csrftoken', { domain: apiUrl, path: apiUrl }));
-    console.log(Cookies.get('csrftoken', { domain: 'http://localhost:5173', path: '/' }));
-    console.log(Cookies.get('csrftoken', { domain: 'http://localhost:5173', path: apiUrl }));
-   
+    console.log(Cookies.get('csrftoken'));
+   console.log(usuario.csrftoken);
     console.log(document.allCookies);
+    console.log('mycookie:', Cookies.get('mycookie'));
     try {
-
-      const cookieValue = Cookies.get("csrftoken", { path: apiUrl});
-      console.log("cookieValue" + cookieValue);
+        console.log("Referer:"+apiUrl);
       const response = await axiosInstance.post(
+       
         "/api-auth/logout-view/",
         {},
         {
           headers: {
             "Content-Type": "application/json",
-            "X-CSRFToken": cookieValue.csrftoken,
+            // "X-CSRFToken": usuario.csrftoken,
+            // "X-XSRF-TOKEN": usuario.csrftoken,
+            // "XSRF-TOKEN": usuario.csrftoken,
+            'Referer':apiUrl,
 
             // "sessionid":"",
           },

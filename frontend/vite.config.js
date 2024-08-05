@@ -16,9 +16,7 @@ export default defineConfig(({ mode }) => {
           rewrite: (path) => path.replace(/^\/api/, ''),
           secure: false,
           // Añade este campo para permitir el manejo de cookies
-          cookieDomainRewrite: {
-            "*": "", // Opcional: Configura el dominio de las cookies si es necesario
-          },
+          cookieDomainRewrite: 'localhost',
         },
       },
     },
