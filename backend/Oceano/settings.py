@@ -144,9 +144,10 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ]
 }
+#CSRF_TRUSTED_ORIGINS = ['https://hotel-oceano.onrender.com']
 #Solo envía la cookie sobre HTTPS
 CSRF_COOKIE_SECURE = True
-#Previene acceso por JavaScript
+#Previene acceso por JavaScript solo dejo esta en false 
 CSRF_COOKIE_HTTPONLY = True
 #1 semana, en segundos
 SESSION_COOKIE_AGE = 604800
@@ -164,8 +165,8 @@ SPECTACULAR_SETTINGS = {
 
 #Configuración de CORS
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_ALL_ORIGINS = True
-#CORS_ALLOWED_ORIGINS = [os.getenv("CORS_ALLOWED_ORIGINS"),]
+#CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [os.getenv("CORS_ALLOWED_ORIGINS"),]
 
 #Configuración de Cloudinay
 CLOUDINARY_STORAGE = {
