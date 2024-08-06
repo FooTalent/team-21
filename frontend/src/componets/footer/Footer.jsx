@@ -9,6 +9,8 @@ import {
   Center,
   Divider,
   useBreakpointValue,
+  Flex,
+  useBreakpoint,
 } from "@chakra-ui/react";
 
 import { BsGeoAlt,  BsTwitterX } from "react-icons/bs";
@@ -18,9 +20,7 @@ import { MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 export const Footer = () => {
-
-  console.log(import.meta.env.VITE_API_URL);
-  
+ const isMobil = useBreakpoint({base:true,sm:false});
   const imgUrl = useBreakpointValue({base:"/img/logo2linea.svg", md: "/img/logo1linea.svg"})
 
   return (
@@ -30,15 +30,16 @@ export const Footer = () => {
       </Center>
       <Box
         bg="brand.light" 
-        color="white"
+        color="secondary.500"
         py={8}
         px={4}
         flexDir={["column", "row"]}
       >
-        <Center 
+        <Flex
         flexDir={["column", "row"]} 
         justifyContent={"space-around"}
-       
+        borderBottom={'2px solid'}
+        borderColor={'secondary.400'} 
         >
           <Link to={"/nosotros"}
         
@@ -47,9 +48,10 @@ export const Footer = () => {
           {/* <Link>Nuestros servicios</Link> */}
           <Link to={"/interes"}>Sitios de Interes</Link>
           <Link to={"/consulta"}>Formulario de Consulta</Link>
-        </Center>
-        <Divider />
-        <Center flexDir={["column", "row"]}justifyContent={"space-around"}>
+        </Flex>
+        {/* <Divider/> */}
+        <Flex flexDir={["column", "row"]}justifyContent={"space-around"}  borderBottom={'2px solid'}
+        borderColor={'secondary.400'} >
           <Text p={5}>
             <Icon as={BsGeoAlt} mr={2} /> Mendoza, Argentina
           </Text>
@@ -59,9 +61,9 @@ export const Footer = () => {
           <Text p={5}>
             <Icon as={FaPhone} mr={2} /> (0261)-123-4567
           </Text>
-        </Center>
-        <Divider />
-        <Center>
+        </Flex>
+      
+        <Flex>
           <Box pt={4}>
             <HStack spacing={4} color={"primary.default"}>
               {/* <Text fontWeight="bold" mb={2}>
@@ -78,12 +80,15 @@ export const Footer = () => {
               </Link>
             </HStack>
           </Box>
-        </Center>
-        <Center>
-          <Text fontSize="sm" pt={4}>
+        </Flex>
+        <Flex fontSize="sm" pt={4} justifyContent={'space-evenly'}>
+          <Text >
             © Producto FooTalent 2024
           </Text>
-        </Center>
+          { isMobil!=='base' &&
+           <Text as='h5'>Todos los derechos reservados</Text>
+          }
+           </Flex>
       </Box>
     </>
   );

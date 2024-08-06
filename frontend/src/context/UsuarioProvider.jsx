@@ -11,18 +11,17 @@ export const UsuarioProvider = ({ children }) => {
   const [csrfToken, setCsrfToken] = useState(null); // Estado para el token CSRF
 
   const [usuario, setUsuario] = useState({});
-  const apiUrl =  import.meta.env.VITE_API_URL
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const axiosInstance = axios.create({
-   
     // baseURL: import.meta.env.VITE_API_URL,
     // baseURL: apiUrl,
-    baseURL: '/api',
+    baseURL: "/api",
     headers: {
       "Content-Type": "application/json",
-      "accept": "*/*",
+      accept: "*/*",
     },
-    withCredentials:true,
+    withCredentials: true,
   });
 
   const userSave = () => {
@@ -31,76 +30,67 @@ export const UsuarioProvider = ({ children }) => {
       setUsuario(JSON.parse(usuarioGuardado));
     }
   };
-  // useEffect(() => {
-  //   userSave();
-  // }, []);
+  useEffect(() => {
+    userSave();
+  }, []);
 
   // Configuración inicial de Axios
   const headers = {
     "Content-Type": "application/json",
-    "accept": "*/*",
+    accept: "*/*",
   };
 
   const login = async (userData) => {
-  
-    if (!Cookies.get("sessionid")) {
-      try {
-        const response = await axiosInstance.post(
-          "/api-auth/login-view/",
-          {
-            username: userData.usuario,
-            password: userData.password,
-          },
-          {
-            headers: headers,
-            withCredentials: true,
-          }
-        );
-        console.log(response.data);
       
-        const data = {
+    try {
+      const response = await axiosInstance.post(
+        "/api-auth/login-view/",
+        {
           username: userData.usuario,
           password: userData.password,
-          csrftoken: Cookies.get("csrftoken"),
-          sessionid: Cookies.get("sessionid"),
-        };
-        setUsuario(data);
-        console.log(data);
-        localStorage.setItem("usuario", JSON.stringify(data));
-        // window.location.href = '/admin/home';
-      } catch (error) {
-        alert("Credenciales invalidas pero no aca ");
+        },
+        {
+          headers: headers,
+          withCredentials: true,
+        }
+      );
+      response.data.csrf_token !== null &&
+        setCsrfToken(response.data.csrf_token);
+      const data = {
+        username: userData.usuario,
+        password: userData.password,
+        csrftoken: csrfToken,
+      };
+      setUsuario(data);
+
+      localStorage.setItem("usuario", JSON.stringify(data));
+      return true;
+    } catch (error) {
+      setUsuario({});
+      localStorage.removeItem("usuario");
+      if (error.response) {
+        alert("autentication");
+      } else {
+        alert(error);
       }
+
+      return false;
     }
   };
 
   const logout = async () => {
-    
-    // const cookieValue =JSON.parse(localStorage.getItem('usuario'));
-    // console.log(cookieValue.csrftoken);
-
-    console.log('token de estado'+csrfToken);
-    console.log(Cookies.get('csrftoken', { domain: 'localhost', path: apiUrl }));
-    console.log(Cookies.get('csrftoken', { domain: 'localhost', path: '/'}));
-    console.log(Cookies.get('csrftoken', { domain: 'https://hotel-ey89.onrender.com',path: '/' }));
-    console.log(Cookies.get('csrftoken', { domain: 'https://hotel-ey89.onrender.com',path: apiUrl }));
-    console.log(Cookies.get('csrftoken', { domain: apiUrl, path: "/" }));
-    console.log(Cookies.get('csrftoken', { domain: apiUrl, path: apiUrl }));
-    console.log(Cookies.get('csrftoken', { domain: 'http://localhost:5173', path: '/' }));
-    console.log(Cookies.get('csrftoken', { domain: 'http://localhost:5173', path: apiUrl }));
-   
-    console.log(document.allCookies);
+   console.log(Cookies.get('csrftoken'));
     try {
-
-      const cookieValue = Cookies.get("csrftoken", { path: apiUrl});
-      console.log("cookieValue" + cookieValue);
+     
       const response = await axiosInstance.post(
         "/api-auth/logout-view/",
         {},
         {
           headers: {
             "Content-Type": "application/json",
-            "X-CSRFToken": cookieValue.csrftoken,
+            "X-CSRFToken": usuario.csrftoken,
+            // "X-XSRF-TOKEN": usuario.csrftoken,
+            // "XSRF-TOKEN": usuario.csrftoken,
 
             // "sessionid":"",
           },
@@ -108,11 +98,19 @@ export const UsuarioProvider = ({ children }) => {
           withCredentials: true,
         }
       );
-    } catch (error) {
       localStorage.removeItem("usuario");
+      Cookies.remove('csrftoken');
+      Cookies.remove('sessionid');
+      setUsuario({});
+      window.location.href = "/login";
+    } catch (error) {
       console.log("algo paso" + error);
+      localStorage.removeItem("usuario");
+      Cookies.remove('csrftoken');
+      Cookies.remove('sessionid');
+      setUsuario({});
+      window.location.href = "/login";
     }
-    setUsuario(false);
   };
 
   return (

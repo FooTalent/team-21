@@ -37,20 +37,21 @@ import { BiBox } from "react-icons/bi";
 
 
 export const HabitacionCard = ({ hab, imagen }) => {
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isDeleting, setIsDeleting] = useState(false);
-  const { setUpdateRoom } = useContext(HabitacionContext);
-  const onDelete = async (id) => {
-    try {
-      await axios.delete(
-        `https://hotel-oceano.onrender.com/api-room/roomtype/${id}/`
-      );
-      setUpdateRoom(true);
-      // setHabitaciones(habitaciones.filter(hab => hab.id !== id));
-    } catch (error) {
-      console.error("Error al eliminar la habitación:", error);
-    }
-  };
+  const { setUpdateRoom,onDelete } = useContext(HabitacionContext);
+  // const onDelete = async (id) => {
+  //   try {
+  //     await axios.delete(
+  //       `https://hotel-oceano.onrender.com/api-room/roomtype/${id}/`
+  //     );
+  //     setUpdateRoom(true);
+  //     // setHabitaciones(habitaciones.filter(hab => hab.id !== id));
+  //   } catch (error) {
+  //     console.error("Error al eliminar la habitación:", error);
+  //   }
+  // };
 
   const handleDelete = async () => {
     setIsDeleting(true);

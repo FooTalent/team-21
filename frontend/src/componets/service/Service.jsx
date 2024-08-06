@@ -88,7 +88,7 @@ export const Service = () => {
 
       <Center width="100%">
         <Button mb={2} variant={"filled"} marginBottom={4}>
-          <Link to={"/consulta"}>Consultar</Link>
+          <Link to={"/consulta"}>Consulta</Link>
         </Button>
       </Center>
     </VStack>

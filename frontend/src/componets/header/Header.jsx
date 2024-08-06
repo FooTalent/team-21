@@ -41,10 +41,10 @@ export const Header = () => {
           h={"5.5em"}
           as="nav"
           justifyContent="space-between"
-          alignItems={"center"}
           
+          align={'center'}
           px={["2em","4.5em"]}
-          pb="1em"
+          py="1em"
           bg="brand.light"
           color={"white"}
         >
@@ -73,7 +73,7 @@ export const Header = () => {
           alignItems={"center"}
           
           px={"3.5em"}
-          pb="1em"
+          py="1em"
           bg="brand.light"
           color={"white"}
         >
@@ -96,13 +96,13 @@ export const Header = () => {
               Sobre Nosotros
             </LinkHover>
             <LinkHover to="/interes" currentPath={location.pathname}>
-              Sitios de Interes
+              Puntos de Interes
             </LinkHover>
 
           </Flex>
           
           <Button variant="filled"  >
-              <Link to={"/consulta"}>Consultar</Link>
+              <Link to={"/consulta"}>Consulta</Link>
             </Button>
          
           <IconButton 
@@ -145,7 +145,7 @@ export const Header = () => {
                   borderColor={" secondary.200"}
                   pl={25}
                 >
-                  <Link to={"/interes"}>Sitios de Interes</Link>
+                  <Link to={"/interes"}>Puntos de Interes</Link>
                 </Box>
 
                 <Button>
