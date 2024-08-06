@@ -28,7 +28,7 @@ export default defineConfig(({ mode }) => {
     };
   } else {
     return {
-      base:https://hotel-ey89.onrender.com,
+      base: "https://hotel-ey89.onrender.com",
       build: {
         outDir: "dist",
       },
