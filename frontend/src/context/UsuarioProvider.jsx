@@ -2,21 +2,19 @@ import { useEffect, useState } from "react";
 import { UsuarioContext } from "./UsuarioContext";
 import Cookies from "js-cookie";
 import axios from "axios";
-const apiUrl = import.meta.env.VITE_API_URL;
 import { useNavigate } from "react-router-dom";
 
 export const UsuarioProvider = ({ children }) => {
+
   //  const URL_BASE = 'https://hotel-oceano.onrender.com' //SERVIDOR DE JAVIER
   // const URL_BASE = "https://hotel-ey89.onrender.com"; //SERIVIDOR OMAR
   const [csrfToken, setCsrfToken] = useState(null); // Estado para el token CSRF
 
   const [usuario, setUsuario] = useState({});
-  const apiUrl = import.meta.env.VITE_API_URL;
+  
 
   const axiosInstance = axios.create({
-    // baseURL: import.meta.env.VITE_API_URL,
-    // baseURL: apiUrl,
-    baseURL: "/api",
+    baseURL: import.meta.env.VITE_API_URL,
     headers: {
       "Content-Type": "application/json",
       accept: "*/*",
@@ -41,7 +39,7 @@ export const UsuarioProvider = ({ children }) => {
   };
 
   const login = async (userData) => {
-      
+     
     try {
       const response = await axiosInstance.post(
         "/api-auth/login-view/",

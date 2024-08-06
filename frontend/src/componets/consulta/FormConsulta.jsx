@@ -7,7 +7,7 @@ import {
   FormLabel,
   Input,
   VStack,
-  Select,
+
   Textarea,
   NumberInput,
   NumberInputField,
@@ -16,23 +16,15 @@ import {
   RadioGroup,
   HStack,
   Radio,
-  CheckboxGroup,
+
   Checkbox,
   Text,
-  Link,
-  Icon,
-  IconButton,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
+ 
   useDisclosure,
   Heading,
 } from "@chakra-ui/react";
 import HabitacionField from "./HabitacionField";
-import { MinusIcon, PlusSquareIcon } from "@chakra-ui/icons";
+import {PlusSquareIcon } from "@chakra-ui/icons";
 import axios from "axios";
 import { HabitacionContext } from "../../context/HabitacionContext";
 import ExitoModal from "../admin/ExitoModal";
@@ -44,10 +36,20 @@ export const FormConsulta = () => {
   const [submissionStatus, setSubmissionStatus] = useState(null);
   const [servicios, setServicios]= useState([])
   const [cantPersona, setCantPersona]=useState(1)
+  
+  const axiosInstance = axios.create({
+    baseURL: import.meta.env.VITE_API_URL,
+    headers: {
+      "Content-Type": "application/json",
+      accept: "*/*",
+    },
+    withCredentials: true,
+  });
+
   useEffect(()=>{
     const obtenerServicio=async()=>{
      try{
-      const res = await axios.get('/api-reservation/service/')
+      const res = await axiosInstance.get('/api-reservation/service/')
      
       setServicios(res.data);
 
@@ -123,7 +125,7 @@ export const FormConsulta = () => {
 
       // console.log("Datos enviados:", JSON.stringify(formattedData, null, 2));
 
-      const response = await axios.post(
+      const response = await axiosInstance.post(
         "/api-quotation/quotation/",
         formattedData,
         {
