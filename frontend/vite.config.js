@@ -5,7 +5,9 @@ export default defineConfig(({ mode }) => {
   // Cargar las variables de entorno
   const env = loadEnv(mode, process.cwd());
   const apiURL = env.VITE_API_URL;
-
+  const baseURL = env.VITE_BASE_URL;
+  console.log('api url:',apiURL);
+  console.log('base url:',baseURL);
   return {
     server: {
       proxy: {
@@ -13,7 +15,7 @@ export default defineConfig(({ mode }) => {
          
            target: apiURL,
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, ""),
+          rewrite: (path) => path.replace(/^\/api/, ''),
           secure: false,
           // Añade este campo para permitir el manejo de cookies
           cookieDomainRewrite: "localhost",
@@ -21,8 +23,8 @@ export default defineConfig(({ mode }) => {
       },
     },
     plugins: [react()],
-    // base: mode === 'production' ? apiURL : '/',
-    //base: '/',
+    // base: mode === 'production' ? baseURL : '/',
+    base: baseURL,
     build: {
       outDir: "dist",
     },

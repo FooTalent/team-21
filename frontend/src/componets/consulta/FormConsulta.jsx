@@ -47,7 +47,7 @@ export const FormConsulta = () => {
   useEffect(()=>{
     const obtenerServicio=async()=>{
      try{
-      const res = await axios.get('https://hotel-oceano.onrender.com/api-reservation/service/')
+      const res = await axios.get('/api-reservation/service/')
      
       setServicios(res.data);
 
@@ -124,7 +124,7 @@ export const FormConsulta = () => {
       // console.log("Datos enviados:", JSON.stringify(formattedData, null, 2));
 
       const response = await axios.post(
-        "https://hotel-oceano.onrender.com/api-quotation/quotation/",
+        "/api-quotation/quotation/",
         formattedData,
         {
           headers: {
