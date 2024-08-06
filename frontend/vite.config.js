@@ -28,7 +28,10 @@ export default defineConfig(({ mode }) => {
     };
   } else {
     return {
-      base:apiURL,
+      // base:apiURL,
+      build: {
+        outDir: "dist",
+      },
       plugins: [react()],
     };
   }
