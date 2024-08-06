@@ -28,6 +28,7 @@ export default defineConfig(({ mode }) => {
     };
   } else {
     return {
+      base:apiURL,
       plugins: [react()],
     };
   }
