@@ -3,6 +3,7 @@ import {
   Button,
   Center,
   Flex,
+  HStack,
   Image,
   Stack,
   Text,
@@ -196,7 +197,7 @@ export const Room = () => {
           </Box>
         </Box>
       ) : (
-        <Center  >
+        <HStack  >
           <Wrap justify={"space-between"}>
             {slides.map((room) => (
               <RoomCard
@@ -209,7 +210,7 @@ export const Room = () => {
               />
             ))}
           </Wrap>
-        </Center>
+        </HStack>
       )}
       {slides.map((room) => (
         <RoomModal

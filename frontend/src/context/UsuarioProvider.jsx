@@ -2,38 +2,49 @@ import { useEffect, useState } from "react";
 import { UsuarioContext } from "./UsuarioContext";
 import Cookies from "js-cookie";
 import axios from "axios";
+const apiUrl = import.meta.env.VITE_API_URL;
 import { useNavigate } from "react-router-dom";
 
 export const UsuarioProvider = ({ children }) => {
   //  const URL_BASE = 'https://hotel-oceano.onrender.com' //SERVIDOR DE JAVIER
   // const URL_BASE = "https://hotel-ey89.onrender.com"; //SERIVIDOR OMAR
+  const [csrfToken, setCsrfToken] = useState(null); // Estado para el token CSRF
 
   const [usuario, setUsuario] = useState({});
+  const apiUrl = import.meta.env.VITE_API_URL;
 
-  
-  const userSave=()=>{
-     const usuarioGuardado = localStorage.getItem("usuario");
+  const axiosInstance = axios.create({
+    // baseURL: import.meta.env.VITE_API_URL,
+    // baseURL: apiUrl,
+    baseURL: "/api",
+    headers: {
+      "Content-Type": "application/json",
+      accept: "*/*",
+    },
+    withCredentials: true,
+  });
+
+  const userSave = () => {
+    const usuarioGuardado = localStorage.getItem("usuario");
     if (usuarioGuardado) {
       setUsuario(JSON.parse(usuarioGuardado));
     }
-  }
-  // useEffect(() => {
-  //   userSave();
-  // }, []);
+  };
+  useEffect(() => {
+    userSave();
+  }, []);
 
   // Configuración inicial de Axios
   const headers = {
     "Content-Type": "application/json",
-    'accept': "*/*",
+    accept: "*/*",
   };
-  
-  const login = async (userData) => {
-    if(!Cookies.get('sessionid'))
-    {
 
-      try {
-        const response = await axios.post(
-        "/api/api-auth/login-view/",
+  const login = async (userData) => {
+      
+    try {
+      const response = await axiosInstance.post(
+        "/api-auth/login-view/",
         {
           username: userData.usuario,
           password: userData.password,
@@ -43,39 +54,43 @@ export const UsuarioProvider = ({ children }) => {
           withCredentials: true,
         }
       );
-      console.log(response.data);
-      console.log(document.cookie);
-      console.log(Cookies.get('csrftoken'));
+      response.data.csrf_token !== null &&
+        setCsrfToken(response.data.csrf_token);
       const data = {
-        "username": userData.usuario,
-        "password": userData.password,
-        "csrftoken": Cookies.get('csrftoken'),
-        "sessionid": Cookies.get('sessionid'),
-        
-      }
+        username: userData.usuario,
+        password: userData.password,
+        csrftoken: csrfToken,
+      };
       setUsuario(data);
-      console.log(data);
+
       localStorage.setItem("usuario", JSON.stringify(data));
-      // window.location.href = '/admin/home';
+      return true;
     } catch (error) {
-      alert("Credenciales invalidas pero no aca ");
+      setUsuario({});
+      localStorage.removeItem("usuario");
+      if (error.response) {
+        alert("autentication");
+      } else {
+        alert(error);
+      }
+
+      return false;
     }
-  }
   };
 
   const logout = async () => {
+   console.log(Cookies.get('csrftoken'));
     try {
-      console.log(document.cookie);
-
-      const cookieValue = Cookies.get("csrftoken", { path: "/" });
-      console.log("cookieValue" + cookieValue);
-      const response = await axios.post(
-        "/api/api-auth/logout-view/",
+     
+      const response = await axiosInstance.post(
+        "/api-auth/logout-view/",
         {},
         {
           headers: {
             "Content-Type": "application/json",
-            "X-CSRFToken": cookieValue,
+            "X-CSRFToken": usuario.csrftoken,
+            // "X-XSRF-TOKEN": usuario.csrftoken,
+            // "XSRF-TOKEN": usuario.csrftoken,
 
             // "sessionid":"",
           },
@@ -83,13 +98,19 @@ export const UsuarioProvider = ({ children }) => {
           withCredentials: true,
         }
       );
-      
-    } catch (error) {
       localStorage.removeItem("usuario");
-      console.log("algo paso"+error);
+      Cookies.remove('csrftoken');
+      Cookies.remove('sessionid');
+      setUsuario({});
+      window.location.href = "/login";
+    } catch (error) {
+      console.log("algo paso" + error);
+      localStorage.removeItem("usuario");
+      Cookies.remove('csrftoken');
+      Cookies.remove('sessionid');
+      setUsuario({});
+      window.location.href = "/login";
     }
-    setUsuario(false);
-
   };
 
   return (

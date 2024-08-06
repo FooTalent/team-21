@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-
-import { Footer } from "../footer/Footer";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -20,6 +18,7 @@ import axios from "axios";
 import Header from "./Header";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import ExitoModal from "./ExitoModal";
+import { HabitacionContext } from "../../context/HabitacionContext";
 
 export const NuevaHabitacion = () => {
   const imgUrl = useBreakpointValue({
@@ -27,6 +26,7 @@ export const NuevaHabitacion = () => {
     md: "/img/logo1linea.svg",
   });
   const { id } = useParams();
+  const {addRoom}=useContext(HabitacionContext)
   const [csrfToken, setCsrfToken] = useState("");
   const [isExitoOpen, setIsExitoOpen] = useState(false);
   const [msjOk,setMsjOk]= useState('' )
@@ -73,16 +73,11 @@ export const NuevaHabitacion = () => {
         // price: Number(formData.price),
       };
       delete datosAEnviar.id;
-      const response = await axios.post(`https://hotel-oceano.onrender.com/api-room/roomtype/`,
-        datosAEnviar,
-       
-      );
-           
-       
+      addRoom(datosAEnviar,formData);
       setMsjOk("La Habitación se creo correctamente");
       setIsExitoOpen(true);
       setSubmissionStatus('success')
-      console.log("Data updated successfully:", response.data);
+      console.log("Data updated successfully:");
       // You might want to show a success message to the user here
     } catch (error) {
       setMsjOk("La Habitación no pudo crearse");
@@ -103,7 +98,7 @@ export const NuevaHabitacion = () => {
        msjOk = {msjOk}
        msjError ={msjError}
       />
-      <Header imgUrl={imgUrl} />
+      {/* <Header imgUrl={imgUrl} /> */}
       <Box
         p={4}
         maxW="sm"

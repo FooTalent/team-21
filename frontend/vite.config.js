@@ -1,29 +1,32 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
+import { defineConfig, loadEnv } from "vite";
+import react from "@vitejs/plugin-react-swc";
 
 export default defineConfig(({ mode }) => {
-  console.log(`Current mode: ${mode}`); // Muestra el modo actual en la consola
-  if (mode === 'development') {
-    return {
-      server: {
-        proxy: {
-          '/api': {
-            target: 'https://hotel-oceano.onrender.com',
-            changeOrigin: true,
-            rewrite: (path) => path.replace(/^\/api/, ''),
-            secure: false,
-          }
-        }
+  // Cargar las variables de entorno
+  const env = loadEnv(mode, process.cwd());
+  const apiURL = env.VITE_API_URL;
+  const baseURL = env.VITE_BASE_URL;
+  console.log('api url:',apiURL);
+  console.log('base url:',baseURL);
+  return {
+    server: {
+      proxy: {
+        "/api": {
+         
+           target: apiURL,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ''),
+          secure: false,
+          // Añade este campo para permitir el manejo de cookies
+          cookieDomainRewrite: "localhost",
+        },
       },
-      plugins: [react()],
-    };
-  } else if (mode === 'production') {
-    return {
-      base: '/hotel-oceano.vercel.app/',
-      plugins: [react()],
-      build: {
-        outDir: 'dist',
-      },
-    };
-  }
+    },
+    plugins: [react()],
+    // base: mode === 'production' ? baseURL : '/',
+    base: baseURL,
+    build: {
+      outDir: "dist",
+    },
+  };
 });
