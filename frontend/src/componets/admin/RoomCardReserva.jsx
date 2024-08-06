@@ -16,13 +16,22 @@ export const RoomCardReserva = ({
   created,
   updated
 }) => {
-  const BASE_URL = 'https://hotel-oceano.onrender.com'; 
+
   const [roomNumber, setRoomNumber] = useState('');
   const [room, setRoom] = useState({});
   const [roomType, setRoomType] = useState('');
   const [client, setClient] = useState(null);
   const [dataModal, setDataModal] = useState({});
   const {updateRoom, obtenerReservas,setUpdateRoom} = useContext(ReservasContext)
+
+  const axiosInstance = axios.create({
+    baseURL: import.meta.env.VITE_API_URL,
+    headers: {
+      "Content-Type": "application/json",
+      accept: "*/*",
+    },
+    withCredentials: true,
+  });
 
   useEffect(() => {
     if (updateRoom) {
@@ -33,7 +42,7 @@ export const RoomCardReserva = ({
 
   const getClient = async () => {
     try {
-      const responseCli = await axios.get(`/api/api-client/client/${client_id}`);
+      const responseCli = await axiosInstance.get(`/api-client/client/${client_id}`);
       const cli = responseCli.data;
       setClient(cli);
       
@@ -44,7 +53,7 @@ export const RoomCardReserva = ({
 
   const getTypeRoom = async (roomTypeId) => {
     try {
-      const res = await axios.get(`/api/api-room/roomtype/${roomTypeId}`);
+      const res = await axiosInstance.get(`/api-room/roomtype/${roomTypeId}`);
       const roomTypeData = res.data;
       setRoomType(roomTypeData.type);
     } catch (error) {
@@ -55,7 +64,7 @@ export const RoomCardReserva = ({
   useEffect(() => {
     const fetchRoomData = async () => {
       try {
-        const response = await axios.get(`/api/api-room/room/${room_id}`);
+        const response = await axiosInstance.get(`/api-room/room/${room_id}`);
         const roomData = response.data;
         setRoom(roomData);
         setRoomNumber(roomData.number);
