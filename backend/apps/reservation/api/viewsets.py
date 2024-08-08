@@ -10,7 +10,7 @@ from .permissions import IsAuthenticatedOrGetOnly
 class ServiceViewSet(ModelViewSet):
     serializer_class = ServiceSerializer
     queryset = Service.active_objects.all()
-    #permission_classes = [IsAuthenticatedOrGetOnly]
+    permission_classes = [IsAuthenticatedOrGetOnly]
     
     @extend_schema(
     description=('logical deletion of the Service model'))
@@ -24,7 +24,7 @@ class ServiceViewSet(ModelViewSet):
 class ReservationRoomViewSet(ModelViewSet):
     serializer_class = ReservationRoomSerializer
     queryset = ReservationRoom.active_objects.all()
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     
     def perform_create(self, serializer):
         #Cuando se crea una reserva coloca en el campo status reserved
@@ -45,7 +45,7 @@ class ReservationRoomViewSet(ModelViewSet):
 class ReservationServiceViewSet(ModelViewSet):
     serializer_class = ReservationServiceSerializer
     queryset = ReservationService.active_objects.all()
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     
     @extend_schema(
     description=('logical deletion of the ReservationService model'))

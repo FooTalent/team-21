@@ -13,7 +13,7 @@ class RoomStatusViewSet(ModelViewSet):
     serializer_class = RoomStatusSerializer
     queryset = RoomStatus.active_objects.all()
     http_method_names = ['get', 'post', 'put', 'delete']
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     
     @extend_schema(
     description=('logical deletion of the Service model'))
@@ -41,7 +41,7 @@ class PhotoViewSet(ModelViewSet):
     queryset = RoomPhoto.active_objects.all()
     parser_classes = (MultiPartParser, FormParser)
     http_method_names = ['get', 'post', 'delete']
-    #permission_classes = [IsAuthenticatedOrGetOnly]
+    permission_classes = [IsAuthenticatedOrGetOnly]
     
     @extend_schema(
     description=('logical deletion of the Service model'))
@@ -55,7 +55,7 @@ class PhotoViewSet(ModelViewSet):
 class RoomTypeViewSet(ModelViewSet):
     serializer_class = RoomTypeSerializer
     queryset = RoomType.active_objects.all()
-    #permission_classes = [IsAuthenticatedOrGetOnly]
+    permission_classes = [IsAuthenticatedOrGetOnly]
     
     @extend_schema(
     description=('logical deletion of the RoomType model'))
@@ -69,7 +69,7 @@ class RoomTypeViewSet(ModelViewSet):
 class RoomViewSet(ModelViewSet):
     serializer_class = RoomSerializer
     queryset = Room.active_objects.all()
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     
     @extend_schema(
     description=('logical deletion of the Room model'))

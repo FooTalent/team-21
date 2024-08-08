@@ -9,7 +9,7 @@ from ..models import Quotation, QuotationRoomType, QuotationServices
 class QuotationViewSet(ModelViewSet):
     serializer_class = QuotationSerializer
     queryset = Quotation.active_objects.all()
-    #permission_classes = [IsAuthenticatedOrPostOnly]
+    permission_classes = [IsAuthenticatedOrPostOnly]
     
     @extend_schema(
     description=('logical deletion of the quotation model, and quotationservices and quotationroomtype related model'))
